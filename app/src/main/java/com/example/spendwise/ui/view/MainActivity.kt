@@ -1,4 +1,4 @@
-package com.example.spendwise
+package com.example.spendwise.ui.view
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
