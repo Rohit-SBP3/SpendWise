@@ -17,6 +17,8 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -26,38 +28,53 @@ import com.example.spendwise.R
 
 @Preview(showBackground = true)
 @Composable
-fun NoAccountScreen(){
+fun NoAccountScreen(modifier: Modifier = Modifier){
     Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(start = 20.dp, end = 20.dp),
+        modifier = modifier.fillMaxSize(),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
+    ) {
+        DefaultTemplate(
+            modifier,
+            "You don't have any accounts!",
+            painterResource(id = R.drawable.wallet),
+            "Add an account   ",
+            Icons.Default.Add
+        )
+    }
+}
+
+@Composable
+fun DefaultTemplate(modifier: Modifier,text: String, image: Painter, buttonText:String, buttonIcon: ImageVector){
+    Column(
+        modifier = modifier.padding(start = 20.dp, end = 20.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ){
         Text(
-            text = "You don't have any accounts!",
+            text = text,
             style = MaterialTheme.typography.headlineMedium,
             fontWeight = FontWeight.Bold,
             textAlign = TextAlign.Center
         )
-        Spacer(modifier = Modifier.height(25.dp))
+        Spacer(modifier = modifier.height(25.dp))
         Icon(
-            painter = painterResource(id = R.drawable.wallet),
+            painter = image,
             contentDescription = "Empty wallet",
-            modifier = Modifier.size(90.dp)
+            modifier = modifier.size(90.dp)
         )
-        Spacer(modifier = Modifier.height(25.dp))
+        Spacer(modifier = modifier.height(25.dp))
         Button(onClick = {
 
         }) {
             Row (){
                 Text(
-                    text = "Add an account   ",
+                    text = buttonText,
                     style = MaterialTheme.typography.bodyLarge,
                     fontWeight = FontWeight.Bold
                 )
                 Icon(
-                    imageVector = Icons.Default.Add,
+                    imageVector = buttonIcon,
                     contentDescription = "Add account"
                 )
 
