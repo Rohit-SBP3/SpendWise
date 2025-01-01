@@ -77,7 +77,6 @@ fun DefaultTemplate(modifier: Modifier,text: String, image: Painter, buttonText:
                     imageVector = buttonIcon,
                     contentDescription = "Add account"
                 )
-
             }
         }
     }
