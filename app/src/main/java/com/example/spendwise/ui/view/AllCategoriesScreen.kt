@@ -12,14 +12,11 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.material.icons.filled.Build
 import androidx.compose.material.icons.filled.Home
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -27,64 +24,63 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.spendwise.model.CategoryListModel
+import com.example.spendwise.model.CategoryModel
 
 @Preview(showBackground = true)
 @Composable
 fun AllCategoriesScreen(modifier: Modifier = Modifier){
 
-    val categoryList: List<CategoryListModel> = listOf(
-        CategoryListModel(
+    val categoryList: List<CategoryModel> = listOf(
+        CategoryModel(
             Icons.Default.Home,
             "Home",
             "$50.5"
         ),
-        CategoryListModel(
+        CategoryModel(
             Icons.Default.Home,
         "Home",
         "$50.5"
         ),
-        CategoryListModel(
+        CategoryModel(
             Icons.Default.Home,
             "Home",
             "$50.5"
         ),
-        CategoryListModel(
+        CategoryModel(
             Icons.Default.Home,
             "Home",
             "$50.5"
         ),
-        CategoryListModel(
+        CategoryModel(
             Icons.Default.Home,
             "Home",
             "$50.5"
         ),
-        CategoryListModel(
+        CategoryModel(
             Icons.Default.Home,
             "Home",
             "$50.5"
         ),
-        CategoryListModel(
+        CategoryModel(
             Icons.Default.Home,
             "Home",
             "$50.5"
         ),
-        CategoryListModel(
+        CategoryModel(
             Icons.Default.Home,
             "Home",
             "$50.5"
         ),
-        CategoryListModel(
+        CategoryModel(
             Icons.Default.Home,
             "Home",
             "$50.5"
         ),
-        CategoryListModel(
+        CategoryModel(
             Icons.Default.Home,
             "Home",
             "$50.5"
@@ -94,8 +90,32 @@ fun AllCategoriesScreen(modifier: Modifier = Modifier){
     Column(
         modifier.fillMaxSize()
     ){
-        BackIconWithText(modifier, "Categories")
+        UpperBarWithIconAndText(
+            leadIcon = Icons.Default.ArrowBack,
+            trailIcon = null,
+            text = "Categories")
         LazyColumn(modifier){
+            item {
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(15.dp)
+                        .clip(RoundedCornerShape(20.dp))
+                        .background(Color(0xFFF0C0F3)),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Icon(
+                        imageVector = Icons.Default.Add,
+                        contentDescription = "Add Category",
+                        modifier = Modifier.size(50.dp)
+                    )
+                    Spacer(modifier = Modifier.width(20.dp)) // Optional spacing between icon and text
+                    Text(
+                        text = "Add a category",
+                        fontSize = 20.sp
+                    )
+                }
+            }
             items(categoryList){
                 Column(
                     modifier
@@ -123,7 +143,7 @@ fun CategoryListItem(
     Row(
         modifier = modifier
             .fillMaxWidth()
-            .background(Color.Cyan)
+            .background(Color(0xFFF0C0F3))
             .padding(5.dp),
         verticalAlignment = Alignment.CenterVertically
     ){
@@ -145,27 +165,5 @@ fun CategoryListItem(
                 fontSize = 14.sp
             )
         }
-    }
-}
-
-@Composable
-fun BackIconWithText(modifier: Modifier = Modifier, text:String){
-    Row(
-        modifier
-            .fillMaxWidth()
-            .padding(10.dp),
-        horizontalArrangement = Arrangement.Absolute.Left,
-        verticalAlignment = Alignment.CenterVertically
-    ){
-        Icon(
-            imageVector = Icons.Default.ArrowBack,
-            contentDescription = "Back Button",
-            modifier.size(30.dp)
-        )
-        Spacer(modifier = modifier.width(20.dp))
-        Text(
-            text = text,
-            fontSize = 26.sp
-        )
     }
 }
