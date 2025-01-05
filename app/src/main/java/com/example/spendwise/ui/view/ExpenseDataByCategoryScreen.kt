@@ -25,6 +25,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.modifier.modifierLocalProvider
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -129,6 +130,7 @@ fun CategoryExpenseDataSection(
                Text(
                    text = price,
                    fontSize = 25.sp,
+                   style = TextStyle(Color(0xFF20E728)),
                    fontWeight = FontWeight.Bold,
                    letterSpacing = 1.4.sp
                )
@@ -145,6 +147,7 @@ fun CategoryExpenseDataSection(
                Text(
                    text = price,
                    fontSize = 25.sp,
+                   style = TextStyle(Color(0xFFF35D4F)),
                    fontWeight = FontWeight.Bold,
                    letterSpacing = 1.4.sp
                )
