@@ -16,6 +16,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountCircle
+import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Face
 import androidx.compose.material.icons.filled.Home
@@ -58,27 +59,6 @@ fun AccountsScreen(modifier: Modifier = Modifier){
             "$67,770.00",
             "$303.00",
             "-86.006"
-        ),
-        AmountCardModel(
-            Icons.Default.Email,
-            "Saving",
-            "$67,770.00",
-            "$303.00",
-            "-86.006"
-        ),
-        AmountCardModel(
-            Icons.Default.AccountCircle,
-            "Saving",
-            "$67,770.00",
-            "$303.00",
-            "-86.006"
-        ),
-        AmountCardModel(
-            Icons.Default.AccountCircle,
-            "Saving",
-            "$67,770.00",
-            "$303.00",
-            "-86.006"
         )
     )
 
@@ -94,6 +74,13 @@ fun AccountsScreen(modifier: Modifier = Modifier){
                     modifier.padding(start = 15.dp, end = 15.dp, bottom = 15.dp)
                 ){
                     AccountCard(modifier = modifier, amountDetail = it)
+                }
+            }
+            item {
+                Column(
+                    modifier.padding(start = 15.dp, end = 15.dp, bottom = 15.dp)
+                ){
+                    CreateAnAccount(modifier)
                 }
             }
         }
@@ -169,10 +156,37 @@ fun IncomeExpenseSection(
     }
 }
 
+@Preview(showBackground = true)
+@Composable
+fun CreateAnAccount(modifier: Modifier = Modifier){
+    Column(
+        modifier
+            .clip(RoundedCornerShape(15.dp))
+            .background(Color(0xFFF0C0F3))
+            .fillMaxWidth()
+            .height(165.dp),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ){
+        Text(
+            text = "Create an Account",
+            fontSize = 32.sp
+        )
+        Icon(
+            imageVector = Icons.Default.Add,
+            contentDescription = "Create An Account!",
+            modifier.size(50.dp)
+        )
+    }
+
+}
+
 @Composable
 fun AccountsTopBar(modifier: Modifier){
     Row(
-        modifier = modifier.fillMaxWidth().padding(15.dp),
+        modifier = modifier
+            .fillMaxWidth()
+            .padding(15.dp),
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically
     ){
