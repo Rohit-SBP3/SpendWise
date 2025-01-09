@@ -1,4 +1,4 @@
-package com.example.spendwise.ui.view
+package com.example.spendwise.model
 
 import androidx.compose.ui.graphics.painter.Painter
 

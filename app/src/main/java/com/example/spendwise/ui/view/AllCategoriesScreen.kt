@@ -1,7 +1,6 @@
 package com.example.spendwise.ui.view
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -16,7 +15,6 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.material.icons.filled.Home
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -24,64 +22,71 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.spendwise.R
 import androidx.compose.ui.unit.sp
-import com.example.spendwise.model.CategoryModel
+import com.example.spendwise.model.Icon2TextModel
 
 @Preview(showBackground = true)
 @Composable
 fun AllCategoriesScreen(modifier: Modifier = Modifier){
 
-    val categoryList: List<CategoryModel> = listOf(
-        CategoryModel(
-            Icons.Default.Home,
+    val categoryList: List<Icon2TextModel> = listOf(
+        Icon2TextModel(
+            painterResource(id = R.drawable.money),
             "Home",
             "$50.5"
         ),
-        CategoryModel(
-            Icons.Default.Home,
-        "Home",
-        "$50.5"
-        ),
-        CategoryModel(
-            Icons.Default.Home,
+        Icon2TextModel(
+            painterResource(id = R.drawable.money),
             "Home",
             "$50.5"
         ),
-        CategoryModel(
-            Icons.Default.Home,
+        Icon2TextModel(
+            painterResource(id = R.drawable.money),
             "Home",
             "$50.5"
         ),
-        CategoryModel(
-            Icons.Default.Home,
+        Icon2TextModel(
+            painterResource(id = R.drawable.money),
             "Home",
             "$50.5"
         ),
-        CategoryModel(
-            Icons.Default.Home,
+        Icon2TextModel(
+            painterResource(id = R.drawable.money),
             "Home",
             "$50.5"
         ),
-        CategoryModel(
-            Icons.Default.Home,
+        Icon2TextModel(
+            painterResource(id = R.drawable.money),
             "Home",
             "$50.5"
         ),
-        CategoryModel(
-            Icons.Default.Home,
+        Icon2TextModel(
+            painterResource(id = R.drawable.money),
             "Home",
             "$50.5"
         ),
-        CategoryModel(
-            Icons.Default.Home,
+        Icon2TextModel(
+            painterResource(id = R.drawable.money),
             "Home",
             "$50.5"
         ),
-        CategoryModel(
-            Icons.Default.Home,
+        Icon2TextModel(
+            painterResource(id = R.drawable.money),
+            "Home",
+            "$50.5"
+        ),
+        Icon2TextModel(
+            painterResource(id = R.drawable.money),
+            "Home",
+            "$50.5"
+        ),
+        Icon2TextModel(
+            painterResource(id = R.drawable.money),
             "Home",
             "$50.5"
         )
@@ -123,9 +128,9 @@ fun AllCategoriesScreen(modifier: Modifier = Modifier){
                         .clip(RoundedCornerShape(15.dp))
                 ) {
                     CategoryListItem(
-                        text = it.text,
+                        text = it.title,
                         icon = it.icon,
-                        price = it.price
+                        price = it.subtitle
                     )
                 }
             }
@@ -137,7 +142,7 @@ fun AllCategoriesScreen(modifier: Modifier = Modifier){
 fun CategoryListItem(
     modifier: Modifier = Modifier,
     text: String,
-    icon: ImageVector,
+    icon: Painter,
     price: String
 ){
     Row(
@@ -148,7 +153,7 @@ fun CategoryListItem(
         verticalAlignment = Alignment.CenterVertically
     ){
         Icon(
-            imageVector = icon,
+            painter = icon,
             contentDescription = text,
             modifier.size(50.dp)
         )
