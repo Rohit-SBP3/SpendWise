@@ -54,7 +54,12 @@ fun ExpenseDataByCategoryScreen(
             price = "$10.29",
             modifier = modifier
         )
-        NoTransactionToShow(modifier)
+        SingleTransactionSection(
+            text = "Rent",
+            type = "Saving",
+            time = "6:38 PM",
+            expense = "$69,420.00"
+        )
     }
 }
 
