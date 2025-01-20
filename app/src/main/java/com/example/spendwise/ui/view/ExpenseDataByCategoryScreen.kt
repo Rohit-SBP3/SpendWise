@@ -54,7 +54,34 @@ fun ExpenseDataByCategoryScreen(
             price = "$10.29",
             modifier = modifier
         )
+        TransactionDateSection(
+            modifier,
+            date = "1/10/1025",
+            amount = "$582",
+            numberOfTransaction = 2
+        )
         SingleTransactionSection(
+            modifier,
+            text = "Rent",
+            type = "Saving",
+            time = "6:38 PM",
+            expense = "$69,420.00"
+        )
+        TransactionDateSection(
+            modifier,
+            date = "1/10/1025",
+            amount = "$582",
+            numberOfTransaction = 2
+        )
+        SingleTransactionSection(
+            modifier,
+            text = "Rent",
+            type = "Saving",
+            time = "6:38 PM",
+            expense = "$69,420.00"
+        )
+        SingleTransactionSection(
+            modifier,
             text = "Rent",
             type = "Saving",
             time = "6:38 PM",

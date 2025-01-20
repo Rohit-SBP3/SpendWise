@@ -38,9 +38,7 @@ fun SingleTransactionSection(
         Icon(
             painter = painterResource(id = R.drawable.money),
             contentDescription = "Transaction",
-            modifier
-                .size(60.dp)
-                .padding(5.dp)
+            modifier.size(50.dp)
         )
         Spacer(modifier = modifier.width(10.dp))
         Column(
@@ -48,18 +46,18 @@ fun SingleTransactionSection(
         ){
             Text(
                 text = text,
-                fontSize = 18.sp
+                fontSize = 17.sp
             )
             Row(
                 horizontalArrangement = Arrangement.Center
             ){
                 Text(
                     text = type,
-                    fontSize = 17.sp
+                    fontSize = 16.sp
                 )
                 Text(
                     text = " ⦁ ",
-                    fontSize = 16.sp
+                    fontSize = 15.sp
                 )
                 Text(
                     text = time,
