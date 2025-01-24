@@ -1,4 +1,4 @@
-package com.example.spendwise.ui.view
+package com.example.spendwise.ui.view.setup
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement

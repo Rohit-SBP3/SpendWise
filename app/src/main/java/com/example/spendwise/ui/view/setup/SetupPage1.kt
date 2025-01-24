@@ -1,4 +1,4 @@
-package com.example.spendwise.ui.view
+package com.example.spendwise.ui.view.setup
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Arrangement
@@ -22,6 +22,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.modifier.modifierLocalProvider
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -101,26 +102,48 @@ fun PageContent(
                 fontSize = 18.sp,
             )
             Spacer(modifier = Modifier.height(30.dp))
-            Row(
-                modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                DotsIndicator(totalDots = 2, selectedIndex = pagerState.currentPage)
-                Button(
-                    onClick = {
-                        if (pagerState.currentPage < 2) {
-                            CoroutineScope(Dispatchers.Main).launch {
-                                pagerState.animateScrollToPage(pagerState.currentPage + 1)
-                            }
+        }
+        LowerPanelWithButtonAndDots(modifier,pagerState, buttonText)
+    }
+}
+
+@OptIn(ExperimentalFoundationApi::class)
+@Composable
+fun LowerPanelWithButtonAndDots(modifier: Modifier = Modifier, pagerState: PagerState?, buttonText: String){
+    Row(
+        modifier.fillMaxWidth().padding(10.dp),
+        horizontalArrangement = Arrangement.SpaceBetween,
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        if(pagerState != null ) {
+            DotsIndicator(totalDots = 2, selectedIndex = pagerState.currentPage)
+            Button(
+                onClick = {
+                    if (pagerState.currentPage < 2) {
+                        CoroutineScope(Dispatchers.Main).launch {
+                            pagerState.animateScrollToPage(pagerState.currentPage + 1)
                         }
-                    }) {
-                    Text(text = buttonText)
-                    Icon(
-                        imageVector = Icons.Default.KeyboardArrowRight,
-                        contentDescription = "Move forward"
-                    )
-                }
+                    }
+                }) {
+                Text(text = buttonText)
+                Icon(
+                    imageVector = Icons.Default.KeyboardArrowRight,
+                    contentDescription = "Move forward"
+                )
+            }
+        }else{
+            Spacer(modifier = modifier.weight(1f))
+            Button(
+                onClick = {
+
+                }) {
+                Text(
+                    text = buttonText
+                )
+                Icon(
+                    imageVector = Icons.Default.KeyboardArrowRight,
+                    contentDescription = "Move forward"
+                )
             }
         }
     }
