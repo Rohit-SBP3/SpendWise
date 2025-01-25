@@ -29,7 +29,7 @@ import com.example.spendwise.ui.view.UpperBarWithIconAndText
 @OptIn(ExperimentalFoundationApi::class)
 @Preview(showBackground = true)
 @Composable
-fun WhatsYourNameScreen(modifier: Modifier = Modifier){
+fun SetupName(modifier: Modifier = Modifier){
 
     var username by remember { mutableStateOf("") }
 
