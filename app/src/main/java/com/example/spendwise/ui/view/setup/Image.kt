@@ -41,23 +41,8 @@ fun SetupImage(modifier: Modifier = Modifier){
             trailIcon = null,
             text = "Add a photo"
         )
-        Row(
-            modifier = modifier.padding(start = 10.dp, end = 10.dp, top = 20.dp),
-        ){
-            Icon(
-                imageVector = Icons.Default.Warning,
-                contentDescription = "warning",
-                tint = Color.Gray
-            )
-            Spacer(modifier = modifier.width(8.dp))
-            Text(
-                text = "This is optional. Your photo will be stored only on your device, " +
-                        "and will not be included in backups.",
-                fontWeight = FontWeight.Bold,
-                fontSize = 14.sp,
-                style = TextStyle(color = Color.Gray)
-            )
-        }
+        HintMessage(modifier = modifier, text = "This is optional. Your photo will be stored only on your device, " +
+                "and will not be included in backups.")
         Spacer(modifier = modifier.height(40.dp))
         Icon(
             imageVector = Icons.Default.AccountCircle,
@@ -66,5 +51,25 @@ fun SetupImage(modifier: Modifier = Modifier){
         )
         Spacer(modifier = modifier.weight(1f))
         LowerPanelWithButtonAndDots(pagerState = null, buttonText = "Skip")
+    }
+}
+
+@Composable
+fun HintMessage(modifier: Modifier = Modifier, text: String){
+    Row(
+        modifier = modifier.padding(start = 10.dp, end = 10.dp, top = 20.dp),
+    ){
+        Icon(
+            imageVector = Icons.Default.Warning,
+            contentDescription = "warning",
+            tint = Color.Gray
+        )
+        Spacer(modifier = modifier.width(8.dp))
+        Text(
+            text = text,
+            fontWeight = FontWeight.Bold,
+            fontSize = 14.sp,
+            style = TextStyle(color = Color.Gray)
+        )
     }
 }
