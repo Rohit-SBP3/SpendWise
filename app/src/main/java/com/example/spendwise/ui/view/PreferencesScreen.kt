@@ -1,6 +1,7 @@
 package com.example.spendwise.ui.view
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -34,31 +35,31 @@ import com.example.spendwise.model.Icon2TextModel
 @Composable
 fun PreferencesScreen(modifier: Modifier = Modifier){
 
-    var list: List<Icon2TextModel> = listOf(
+    val list: List<Icon2TextModel> = listOf(
         Icon2TextModel(
-            painterResource(id = R.drawable.brightness),
-            "Theme",
-            "Light"
+            icon = painterResource(id = R.drawable.brightness),
+            title = "Theme",
+            subtitle = "Light"
         ),
         Icon2TextModel(
-            painterResource(id = R.drawable.language),
-            "Language",
-            "English"
+            icon = painterResource(id = R.drawable.language),
+            title = "Language",
+            subtitle = "English"
         ),
         Icon2TextModel(
-            painterResource(id = R.drawable.money),
-            "Primary currency",
-            "USD"
+            icon = painterResource(id = R.drawable.money),
+            title = "Primary currency",
+            subtitle = "USD",
         ),
         Icon2TextModel(
-            painterResource(id = R.drawable.numpad),
-            "Numpad",
-            "Classic"
+            icon = painterResource(id = R.drawable.numpad),
+            title = "Numpad",
+            subtitle = "Classic"
         ),
         Icon2TextModel(
-            painterResource(id = R.drawable.transfer),
-            "Transfer",
-            "Combine into one"
+            icon = painterResource(id = R.drawable.transfer),
+            title = "Transfer",
+            subtitle = "Combine into one"
         )
     )
 
