@@ -36,59 +36,59 @@ fun AllCategoriesScreen(modifier: Modifier = Modifier){
 
     val categoryList: List<Icon2TextModel> = listOf(
         Icon2TextModel(
-            painterResource(id = R.drawable.money),
-            "Home",
-            "$50.5"
+            icon = painterResource(id = R.drawable.money),
+            title = "Home",
+            subtitle = "$50.5"
         ),
         Icon2TextModel(
-            painterResource(id = R.drawable.money),
-            "Home",
-            "$50.5"
+            icon = painterResource(id = R.drawable.money),
+            title = "Home",
+            subtitle = "$50.5"
         ),
         Icon2TextModel(
-            painterResource(id = R.drawable.money),
-            "Home",
-            "$50.5"
+            icon = painterResource(id = R.drawable.money),
+            title = "Home",
+            subtitle = "$50.5"
         ),
         Icon2TextModel(
-            painterResource(id = R.drawable.money),
-            "Home",
-            "$50.5"
+            icon = painterResource(id = R.drawable.money),
+            title = "Home",
+            subtitle = "$50.5"
         ),
         Icon2TextModel(
-            painterResource(id = R.drawable.money),
-            "Home",
-            "$50.5"
+            icon = painterResource(id = R.drawable.money),
+            title = "Home",
+            subtitle = "$50.5"
         ),
         Icon2TextModel(
-            painterResource(id = R.drawable.money),
-            "Home",
-            "$50.5"
+            icon = painterResource(id = R.drawable.money),
+            title = "Home",
+            subtitle = "$50.5"
         ),
         Icon2TextModel(
-            painterResource(id = R.drawable.money),
-            "Home",
-            "$50.5"
+            icon = painterResource(id = R.drawable.money),
+            title = "Home",
+            subtitle = "$50.5"
         ),
         Icon2TextModel(
-            painterResource(id = R.drawable.money),
-            "Home",
-            "$50.5"
+            icon = painterResource(id = R.drawable.money),
+            title = "Home",
+            subtitle = "$50.5"
         ),
         Icon2TextModel(
-            painterResource(id = R.drawable.money),
-            "Home",
-            "$50.5"
+            icon = painterResource(id = R.drawable.money),
+            title = "Home",
+            subtitle = "$50.5"
         ),
         Icon2TextModel(
-            painterResource(id = R.drawable.money),
-            "Home",
-            "$50.5"
+            icon = painterResource(id = R.drawable.money),
+            title = "Home",
+            subtitle = "$50.5"
         ),
         Icon2TextModel(
-            painterResource(id = R.drawable.money),
-            "Home",
-            "$50.5"
+            icon = painterResource(id = R.drawable.money),
+            title = "Home",
+            subtitle = "$50.5"
         )
     );
 

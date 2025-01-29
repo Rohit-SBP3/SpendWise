@@ -30,7 +30,7 @@ import com.example.spendwise.ui.view.UpperBarWithIconAndText
 @OptIn(ExperimentalFoundationApi::class)
 @Preview(showBackground = true)
 @Composable
-fun SetupImage(modifier: Modifier = Modifier){
+fun SetupImageScreen(modifier: Modifier = Modifier){
     Column(
         modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
