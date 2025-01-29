@@ -2,7 +2,6 @@ package com.example.spendwise.ui.view.setup
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -14,6 +13,8 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountBox
+import androidx.compose.material.icons.filled.AccountCircle
+import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
@@ -43,11 +44,37 @@ fun SetupAccountScreen(modifier: Modifier = Modifier){
         )
         HintMessage(text = "Create new accounts, and/or add from the presents. You can change this later in the \"Accounts\" tab")
         Spacer(modifier = modifier.height(10.dp))
-        AccountBox(icon = Icons.Default.AccountBox, type = "Main", amount = "$715.68")
+        AddAccountBox()
+        AccountBox(icon = Icons.Default.AccountCircle, type = "Main", amount = "$716.85")
         Spacer(modifier = modifier.weight(1f))
         LowerPanelWithButtonAndDots(pagerState = null, buttonText = "Next")
     }
 
+}
+
+@Composable
+fun AddAccountBox(modifier: Modifier = Modifier){
+    Row(
+        modifier
+            .padding(10.dp)
+            .fillMaxWidth()
+            .clip(RoundedCornerShape(30.dp))
+            .background(Color(0xFFF0C0F3)),
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Icon(
+            imageVector = Icons.Default.Add,
+            contentDescription = "Account Icon",
+            modifier = modifier
+                .padding(15.dp)
+                .size(80.dp)
+        )
+        Text(
+            text = "Add new account",
+            fontSize = 22.sp,
+            fontWeight = FontWeight.Medium
+        )
+    }
 }
 
 @Composable
