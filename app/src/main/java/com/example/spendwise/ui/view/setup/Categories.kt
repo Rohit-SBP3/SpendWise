@@ -1,5 +1,6 @@
-package com.example.spendwise.ui.view
+package com.example.spendwise.ui.view.setup
 
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -22,84 +23,92 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.spendwise.R
 import androidx.compose.ui.unit.sp
+import com.example.spendwise.R
 import com.example.spendwise.model.Icon2TextModel
+import com.example.spendwise.ui.view.CategoryListItem
+import com.example.spendwise.ui.view.UpperBarWithIconAndText
 
+@OptIn(ExperimentalFoundationApi::class)
 @Preview(showBackground = true)
 @Composable
-fun AllCategoriesScreen(modifier: Modifier = Modifier){
+fun SetupCategoryScreen(modifier: Modifier = Modifier) {
 
     val categoryList: List<Icon2TextModel> = listOf(
         Icon2TextModel(
             icon = painterResource(id = R.drawable.money),
             title = "Home",
-            subtitle = "$50.5"
+            subtitle = null
         ),
         Icon2TextModel(
             icon = painterResource(id = R.drawable.money),
             title = "Home",
-            subtitle = "$50.5"
+            subtitle = null
         ),
         Icon2TextModel(
             icon = painterResource(id = R.drawable.money),
             title = "Home",
-            subtitle = "$50.5"
+            subtitle = null
         ),
         Icon2TextModel(
             icon = painterResource(id = R.drawable.money),
             title = "Home",
-            subtitle = "$50.5"
+            subtitle = null
         ),
         Icon2TextModel(
             icon = painterResource(id = R.drawable.money),
             title = "Home",
-            subtitle = "$50.5"
+            subtitle = null
         ),
         Icon2TextModel(
             icon = painterResource(id = R.drawable.money),
             title = "Home",
-            subtitle = "$50.5"
+            subtitle = null
         ),
         Icon2TextModel(
             icon = painterResource(id = R.drawable.money),
             title = "Home",
-            subtitle = "$50.5"
+            subtitle = null
         ),
         Icon2TextModel(
             icon = painterResource(id = R.drawable.money),
             title = "Home",
-            subtitle = "$50.5"
+            subtitle = null
         ),
         Icon2TextModel(
             icon = painterResource(id = R.drawable.money),
             title = "Home",
-            subtitle = "$50.5"
+            subtitle = null
         ),
         Icon2TextModel(
             icon = painterResource(id = R.drawable.money),
             title = "Home",
-            subtitle = "$50.5"
+            subtitle = null
         ),
         Icon2TextModel(
             icon = painterResource(id = R.drawable.money),
             title = "Home",
-            subtitle = "$50.5"
-        )
+            subtitle = null
+        ),
+        Icon2TextModel(
+            icon = painterResource(id = R.drawable.money),
+            title = "Home",
+            subtitle = null
+        ),
     )
 
     Column(
-        modifier.fillMaxSize()
-    ){
+        modifier = modifier.fillMaxSize()
+    ) {
         UpperBarWithIconAndText(
             leadIcon = Icons.Default.ArrowBack,
             trailIcon = null,
-            text = "Categories")
-        LazyColumn(modifier){
+            text = "Categories"
+        )
+        LazyColumn() {
             item {
                 Row(
                     modifier = Modifier
@@ -121,57 +130,18 @@ fun AllCategoriesScreen(modifier: Modifier = Modifier){
                     )
                 }
             }
-            items(categoryList){
+            items(categoryList) {
                 Column(
                     modifier
                         .padding(start = 15.dp, end = 15.dp, bottom = 15.dp)
                         .clip(RoundedCornerShape(15.dp))
                 ) {
-                    it.subtitle?.let { it1 ->
-                        CategoryListItem(
-                            text = it.title,
-                            icon = it.icon,
-                            price = it1
-                        )
-                    }
+                    CategoryListItem(
+                        icon = it.icon,
+                        text = it.title,
+                        price = null
+                    )
                 }
-            }
-        }
-    }
-}
-
-@Composable
-fun CategoryListItem(
-    modifier: Modifier = Modifier,
-    text: String,
-    icon: Painter,
-    price: String?
-){
-    Row(
-        modifier = modifier
-            .fillMaxWidth()
-            .background(Color(0xFFF0C0F3))
-            .padding(5.dp),
-        verticalAlignment = Alignment.CenterVertically
-    ){
-        Icon(
-            painter = icon,
-            contentDescription = text,
-            modifier.size(50.dp)
-        )
-        Spacer(modifier = modifier.width(20.dp))
-        Column(
-
-        ){
-            Text(
-                text = text,
-                fontSize = 20.sp
-            )
-            if(price != null) {
-                Text(
-                    text = price,
-                    fontSize = 14.sp
-                )
             }
         }
     }

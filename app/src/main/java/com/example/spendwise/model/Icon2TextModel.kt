@@ -7,5 +7,5 @@ data class Icon2TextModel(
     var modifier: Modifier = Modifier,
     val icon: Painter,
     val title: String,
-    val subtitle: String
+    val subtitle: String?
 )

@@ -74,12 +74,14 @@ fun PreferencesScreen(modifier: Modifier = Modifier){
 
         LazyColumn() {
             items(list) {
-                PreferencesItem(
-                    modifier = modifier,
-                    it.icon,
-                    it.title,
-                    it.subtitle
-                )
+                it.subtitle?.let { it1 ->
+                    PreferencesItem(
+                        modifier = modifier,
+                        it.icon,
+                        it.title,
+                        it1
+                    )
+                }
             }
         }
     }
