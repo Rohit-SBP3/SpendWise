@@ -108,6 +108,7 @@ fun SetupCategoryScreen(modifier: Modifier = Modifier) {
             trailIcon = null,
             text = "Categories"
         )
+        HintMessage(text = "Create categories, and/or add from the presents. You can change this later in \"profile > categories\" menu")
         LazyColumn(modifier.weight(1f)) {
             item {
                 Row(
