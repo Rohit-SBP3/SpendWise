@@ -108,7 +108,7 @@ fun SetupCategoryScreen(modifier: Modifier = Modifier) {
             trailIcon = null,
             text = "Categories"
         )
-        LazyColumn() {
+        LazyColumn(modifier.weight(1f)) {
             item {
                 Row(
                     modifier = Modifier
@@ -144,5 +144,6 @@ fun SetupCategoryScreen(modifier: Modifier = Modifier) {
                 }
             }
         }
+        LowerPanelWithButtonAndDots(pagerState = null, buttonText = "Next")
     }
 }
