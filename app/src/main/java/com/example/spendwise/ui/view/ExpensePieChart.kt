@@ -4,6 +4,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import android.graphics.Color
+import androidx.compose.foundation.layout.padding
+import androidx.compose.ui.unit.dp
 import com.github.mikephil.charting.data.PieEntry
 import androidx.compose.ui.viewinterop.AndroidView
 import com.example.spendwise.model.Expense
@@ -39,7 +41,7 @@ fun ExpensePieChart(expenses: List<Expense>, modifier: Modifier = Modifier) {
 
     // Render PieChart using AndroidView
     AndroidView(
-        modifier = Modifier.fillMaxSize(),
+        modifier = Modifier.fillMaxSize().padding(30.dp),
         factory = { context ->
             PieChart(context).apply {
                 data = pieData

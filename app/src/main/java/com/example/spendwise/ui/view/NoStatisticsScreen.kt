@@ -25,23 +25,48 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.spendwise.R
+import com.example.spendwise.model.Expense
+import java.util.Date
 
 @Preview(showBackground = true)
 @Composable
 fun NoStatisticsScreen(modifier: Modifier = Modifier){
+
+    val expenseList = listOf<Expense>(
+        Expense(
+            "Clothes",
+            20.98,
+            "Shopping",
+            Date(10)
+        ),
+        Expense(
+            "Maggie",
+            50.98,
+            "Food",
+            Date(12)
+        ),
+        Expense(
+            "London",
+            220.98,
+            "Travel",
+            Date(14)
+        )
+    )
+
     Column(
         modifier = Modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally
     ){
         StatMonthSelection(modifier)
-        Spacer(modifier = Modifier.height(180.dp))
-        DefaultTemplate(
+        /*Spacer(modifier = Modifier.height(180.dp))*/
+        /*DefaultTemplate(
             modifier,
             text = "No data to show",
             image = painterResource(id = R.drawable.piechart),
             buttonText = "Select range",
             buttonIcon = Icons.Default.Search
-        )
+        )*/
+        ExpensePieChart(expenses = expenseList, modifier = modifier)
     }
 }
 
