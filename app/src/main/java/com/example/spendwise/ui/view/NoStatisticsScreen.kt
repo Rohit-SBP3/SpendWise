@@ -1,18 +1,18 @@
 package com.example.spendwise.ui.view
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.KeyboardArrowLeft
 import androidx.compose.material.icons.filled.KeyboardArrowRight
-import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -20,37 +20,55 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.spendwise.R
 import com.example.spendwise.model.Expense
+import java.time.LocalDate
+import java.time.Month
+import java.time.ZoneId
 import java.util.Date
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Preview(showBackground = true)
 @Composable
 fun NoStatisticsScreen(modifier: Modifier = Modifier){
+
+    val expenseDate = LocalDate.of(2023, Month.JANUARY, 14)
+    val expenseDateConverted = Date.from(expenseDate.atStartOfDay(ZoneId.systemDefault()).toInstant())
 
     val expenseList = listOf<Expense>(
         Expense(
             "Clothes",
             20.98,
             "Shopping",
-            Date(10)
+            expenseDateConverted
         ),
         Expense(
             "Maggie",
             50.98,
             "Food",
-            Date(12)
+            expenseDateConverted
         ),
         Expense(
             "London",
             220.98,
             "Travel",
-            Date(14)
+            expenseDateConverted
+        ),
+        Expense(
+                "Paris",
+            220.98,
+            "Tour",
+            expenseDateConverted
+        ),
+        Expense(
+            "New York",
+            220.98,
+            "Property",
+            expenseDateConverted
         )
+
     )
 
     Column(
@@ -66,7 +84,7 @@ fun NoStatisticsScreen(modifier: Modifier = Modifier){
             buttonText = "Select range",
             buttonIcon = Icons.Default.Search
         )*/
-        ExpensePieChart(expenses = expenseList, modifier = modifier)
+        ExpensePieChart(expenses = expenseList)
     }
 }
 

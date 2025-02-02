@@ -5,6 +5,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import android.graphics.Color
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.ui.unit.dp
 import com.github.mikephil.charting.data.PieEntry
 import androidx.compose.ui.viewinterop.AndroidView
@@ -15,7 +16,7 @@ import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
 
 @Composable
-fun ExpensePieChart(expenses: List<Expense>, modifier: Modifier = Modifier) {
+fun ExpensePieChart(expenses: List<Expense>) {
     // Convert expenses to PieEntry list
     val entries = expenses.groupBy { it.category }
         .map { (category, items) ->
@@ -27,13 +28,16 @@ fun ExpensePieChart(expenses: List<Expense>, modifier: Modifier = Modifier) {
     // Configure PieDataSet
     val dataSet = PieDataSet(entries, "Expenses by Category").apply {
         colors = listOf(
-            Color.parseColor("#FFA726"), // Example colors
+            Color.parseColor("#FFA726"),
             Color.parseColor("#66BB6A"),
             Color.parseColor("#EF5350"),
-            Color.parseColor("#42A5F5")
+            Color.parseColor("#42A5F5"),
+            Color.parseColor("#EF5350"),
+            Color.parseColor("#EF5350"),
+            Color.parseColor("#EF5350")
         )
         valueTextColor = Color.WHITE
-        valueTextSize = 12f
+        valueTextSize = 48f
     }
 
     // Create PieData
@@ -41,7 +45,7 @@ fun ExpensePieChart(expenses: List<Expense>, modifier: Modifier = Modifier) {
 
     // Render PieChart using AndroidView
     AndroidView(
-        modifier = Modifier.fillMaxSize().padding(30.dp),
+        modifier = Modifier.fillMaxSize().padding(30.dp).size(300.dp),
         factory = { context ->
             PieChart(context).apply {
                 data = pieData
@@ -50,7 +54,6 @@ fun ExpensePieChart(expenses: List<Expense>, modifier: Modifier = Modifier) {
                 setEntryLabelColor(Color.WHITE)
                 legend.orientation = Legend.LegendOrientation.VERTICAL
                 legend.horizontalAlignment = Legend.LegendHorizontalAlignment.RIGHT
-                animateY(1000)
             }
         }
     )
