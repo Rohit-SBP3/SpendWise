@@ -32,9 +32,7 @@ fun ExpensePieChart(expenses: List<Expense>) {
             Color.parseColor("#66BB6A"),
             Color.parseColor("#EF5350"),
             Color.parseColor("#42A5F5"),
-            Color.parseColor("#EF5350"),
-            Color.parseColor("#EF5350"),
-            Color.parseColor("#EF5350")
+            Color.parseColor("#41A125")
         )
         valueTextColor = Color.WHITE
         valueTextSize = 48f
@@ -52,7 +50,7 @@ fun ExpensePieChart(expenses: List<Expense>) {
                 description.isEnabled = false
                 isDrawHoleEnabled = true
                 setEntryLabelColor(Color.WHITE)
-                legend.orientation = Legend.LegendOrientation.VERTICAL
+                legend.orientation = Legend.LegendOrientation.HORIZONTAL
                 legend.horizontalAlignment = Legend.LegendHorizontalAlignment.RIGHT
             }
         }
