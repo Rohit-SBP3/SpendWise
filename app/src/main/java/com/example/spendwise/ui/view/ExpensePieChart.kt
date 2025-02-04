@@ -9,7 +9,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.ui.unit.dp
 import com.github.mikephil.charting.data.PieEntry
 import androidx.compose.ui.viewinterop.AndroidView
-import com.example.spendwise.model.Expense
+import com.example.spendwise.db.Expense
 import com.github.mikephil.charting.charts.PieChart
 import com.github.mikephil.charting.components.Legend
 import com.github.mikephil.charting.data.PieData
