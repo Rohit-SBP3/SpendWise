@@ -39,30 +39,35 @@ fun NoStatisticsScreen(modifier: Modifier = Modifier){
 
     val expenseList = listOf<Expense>(
         Expense(
+            1,
             "London",
             220.98,
             "Travel",
             expenseDateConverted
         ),
         Expense(
+            2,
             "Paris",
             220.98,
             "Tour",
             expenseDateConverted
         ),
         Expense(
+            3,
             "New York",
             220.98,
             "Property",
             expenseDateConverted
         ),
         Expense(
+            4,
             "Clothes",
             20.98,
             "Shopping",
             expenseDateConverted
         ),
         Expense(
+            5,
             "Maggie",
             50.98,
             "Food",
