@@ -1,5 +1,6 @@
 package com.example.spendwise.ui.view
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -22,17 +23,17 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.example.spendwise.R
 
-@Preview(showBackground = true)
 @Composable
-fun DefaultScreen(modifier: Modifier = Modifier){
+fun DefaultScreen(modifier: Modifier = Modifier, navController: NavController){
     Column(
         modifier
             .fillMaxSize()
             .padding(10.dp)
     ){
-        DefaultScreenTopbar(modifier)
+        DefaultScreenTopbar(modifier, navController)
         DefaultBody(modifier)
 
     }
@@ -57,7 +58,9 @@ fun DefaultBody(modifier: Modifier){
         Icon(
             painter = painterResource(id = R.drawable.transaction),
             contentDescription = "No Transaction",
-            modifier.size(90.dp).padding(10.dp),
+            modifier
+                .size(90.dp)
+                .padding(10.dp),
         )
         Spacer(modifier = Modifier.height(25.dp))
         Text(
@@ -69,7 +72,7 @@ fun DefaultBody(modifier: Modifier){
 }
 
 @Composable
-fun DefaultScreenTopbar(modifier: Modifier){
+fun DefaultScreenTopbar(modifier: Modifier, navController: NavController){
     Row(
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceBetween,
@@ -85,7 +88,9 @@ fun DefaultScreenTopbar(modifier: Modifier){
         Icon(
             imageVector = Icons.Default.AccountCircle,
             contentDescription = "User Profile",
-            modifier.size(40.dp)
+            modifier
+                .size(40.dp)
+                .clickable { navController.navigate("profileSection") }
         )
     }
 }

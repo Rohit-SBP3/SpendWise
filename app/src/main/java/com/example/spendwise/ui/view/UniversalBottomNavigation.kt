@@ -1,5 +1,7 @@
 package com.example.spendwise.ui.view
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -30,8 +32,10 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.spendwise.R
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun BottomNavBarApp() {
+
     val navController = rememberNavController()
 
     Scaffold(
@@ -42,15 +46,31 @@ fun BottomNavBarApp() {
             startDestination = "home",
             modifier = Modifier.padding(innerPadding)
         ) {
-            composable("home") { ScreenContent("Home Screen") }
-            composable("search") { ScreenContent("Search Screen") }
-            composable("profile") { ScreenContent("Profile Screen") }
+            composable("home") {
+                DefaultScreen(navController = navController)
+            }
+            composable("stat") {
+                NoStatisticsScreen()
+            }
+            composable("add") {
+                ScreenContent("Loading")
+            }
+            composable("wallet") {
+                NoAccountScreen()
+            }
+            composable("profile") {
+                ProfileScreen()
+            }
+            composable("profileSection"){
+                AddUserInfoScreen()
+            }
         }
     }
 }
 
 @Composable
 fun BottomNavBar(navController: NavController) {
+
     val items = listOf(
         Screen.Home,
         Screen.Stats,
@@ -63,10 +83,11 @@ fun BottomNavBar(navController: NavController) {
         modifier = Modifier
             .fillMaxWidth()
             .padding(10.dp)
-            .clip(RoundedCornerShape(20.dp)) 
+            .clip(RoundedCornerShape(20.dp))
             .background(MaterialTheme.colorScheme.primaryContainer)
     ) {
         NavigationBar{
+
             val currentRoute = navController.currentBackStackEntryAsState().value?.destination?.route
 
             items.forEach { screen ->
@@ -108,6 +129,7 @@ fun ScreenContent(text: String) {
     }
 }
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Preview
 @Composable
 fun PreviewBottomNavBarApp() {
