@@ -18,6 +18,7 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -27,18 +28,19 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.NavDestination
 import com.example.spendwise.R
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalFoundationApi::class)
-@Preview(showBackground = true)
 @Composable
-fun SetupPageInitialScreens(modifier: Modifier = Modifier){
+fun SetupPageInitialScreens(modifier: Modifier = Modifier, navController: NavController){
     Column{
 
-        val pagerState = rememberPagerState(initialPage = 1) { 2 }
+        val pagerState = rememberPagerState(initialPage = 0) { 2 }
 
         HorizontalPager(
             state = pagerState,
@@ -49,14 +51,16 @@ fun SetupPageInitialScreens(modifier: Modifier = Modifier){
                     subtitle = "Your personal finance tracker",
                     icon = painterResource(id = R.drawable.wallet),
                     buttonText = "Next",
-                    pagerState = pagerState
+                    pagerState = pagerState,
+                    navController = navController
                 )
                 1 -> PageContent(
                     title = "You own your data",
                     subtitle = "All of your data is stored only on device, with full export options available",
                     icon = painterResource(id = R.drawable.money),
                     buttonText = "Get Started",
-                    pagerState = pagerState
+                    pagerState = pagerState,
+                    navController = navController
                 )
             }
         }
@@ -72,7 +76,8 @@ fun PageContent(
     subtitle: String,
     icon: Painter,
     buttonText: String,
-    pagerState: PagerState
+    pagerState: PagerState,
+    navController: NavController
 ){
     Column(
         modifier = modifier.fillMaxSize(),
@@ -102,13 +107,22 @@ fun PageContent(
             )
             Spacer(modifier = Modifier.height(30.dp))
         }
-        LowerPanelWithButtonAndDots(modifier,pagerState, buttonText)
+        LowerPanelWithButtonAndDots(modifier,pagerState, buttonText, navController, null)
     }
 }
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun LowerPanelWithButtonAndDots(modifier: Modifier = Modifier, pagerState: PagerState?, buttonText: String){
+fun LowerPanelWithButtonAndDots(
+    modifier: Modifier = Modifier,
+    pagerState: PagerState?,
+    buttonText: String,
+    navController: NavController?,
+    destination: String?
+){
+
+    val coroutineScope = rememberCoroutineScope()
+
     Row(
         modifier.fillMaxWidth().padding(10.dp),
         horizontalArrangement = Arrangement.SpaceBetween,
@@ -118,12 +132,18 @@ fun LowerPanelWithButtonAndDots(modifier: Modifier = Modifier, pagerState: Pager
             DotsIndicator(totalDots = 2, selectedIndex = pagerState.currentPage)
             Button(
                 onClick = {
-                    if (pagerState.currentPage < 2) {
-                        CoroutineScope(Dispatchers.Main).launch {
+                    if (pagerState.currentPage < 1) {
+                        coroutineScope.launch {
                             pagerState.animateScrollToPage(pagerState.currentPage + 1)
                         }
+                    } else {
+                        navController?.navigate("name") {
+                            popUpTo("category") { inclusive = true }
+                        }
                     }
-                }) {
+                }
+
+            ) {
                 Text(text = buttonText)
                 Icon(
                     imageVector = Icons.Default.KeyboardArrowRight,
@@ -134,7 +154,9 @@ fun LowerPanelWithButtonAndDots(modifier: Modifier = Modifier, pagerState: Pager
             Spacer(modifier = modifier.weight(1f))
             Button(
                 onClick = {
-
+                    if (destination != null) {
+                        navController?.navigate(destination)
+                    }
                 }) {
                 Text(
                     text = buttonText

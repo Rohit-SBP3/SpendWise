@@ -24,12 +24,12 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.example.spendwise.ui.view.UpperBarWithIconAndText
 
 @OptIn(ExperimentalFoundationApi::class)
-@Preview(showBackground = true)
 @Composable
-fun SetupNameScreen(modifier: Modifier = Modifier){
+fun SetupNameScreen(modifier: Modifier = Modifier, navController: NavController){
 
     var username by remember { mutableStateOf("") }
 
@@ -58,6 +58,10 @@ fun SetupNameScreen(modifier: Modifier = Modifier){
             )
         }
         Spacer(modifier = modifier.weight(1f))
-        LowerPanelWithButtonAndDots(modifier,pagerState = null, buttonText = "Next")
+        LowerPanelWithButtonAndDots(
+            modifier,pagerState = null,
+            buttonText = "Next",
+            navController = navController,
+            "photo")
     }
 }

@@ -25,12 +25,12 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.example.spendwise.ui.view.UpperBarWithIconAndText
 
 @OptIn(ExperimentalFoundationApi::class)
-@Preview(showBackground = true)
 @Composable
-fun SetupImageScreen(modifier: Modifier = Modifier){
+fun SetupImageScreen(modifier: Modifier = Modifier, navController: NavController){
     Column(
         modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
@@ -50,7 +50,12 @@ fun SetupImageScreen(modifier: Modifier = Modifier){
             modifier.size(120.dp)
         )
         Spacer(modifier = modifier.weight(1f))
-        LowerPanelWithButtonAndDots(pagerState = null, buttonText = "Skip")
+        LowerPanelWithButtonAndDots(
+            pagerState = null,
+            buttonText = "Skip",
+            navController = navController,
+            destination = "currency"
+        )
     }
 }
 

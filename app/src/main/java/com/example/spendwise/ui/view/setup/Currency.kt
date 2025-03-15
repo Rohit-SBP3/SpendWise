@@ -26,12 +26,12 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.example.spendwise.ui.view.UpperBarWithIconAndText
 
 @OptIn(ExperimentalFoundationApi::class)
-@Preview(showBackground = true)
 @Composable
-fun SetupCurrencyScreen(modifier: Modifier = Modifier){
+fun SetupCurrencyScreen(modifier: Modifier = Modifier, navController: NavController){
 
     var currency by remember { mutableStateOf("~~~") }
 
@@ -64,6 +64,11 @@ fun SetupCurrencyScreen(modifier: Modifier = Modifier){
             Text(text = "Choose a currency")
         }
         Spacer(modifier = modifier.weight(1f))
-        LowerPanelWithButtonAndDots(pagerState = null, buttonText = "Next")
+        LowerPanelWithButtonAndDots(
+            pagerState = null,
+            buttonText = "Next",
+            navController = navController,
+            destination = "account"
+        )
     }
 }

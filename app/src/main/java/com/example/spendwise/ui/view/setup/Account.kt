@@ -28,12 +28,12 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.example.spendwise.ui.view.UpperBarWithIconAndText
 
 @OptIn(ExperimentalFoundationApi::class)
-@Preview(showBackground = true)
 @Composable
-fun SetupAccountScreen(modifier: Modifier = Modifier){
+fun SetupAccountScreen(modifier: Modifier = Modifier, navController: NavController){
     Column(
         modifier = modifier.fillMaxSize()
     ){
@@ -47,7 +47,12 @@ fun SetupAccountScreen(modifier: Modifier = Modifier){
         AddAccountBox()
         AccountBox(icon = Icons.Default.AccountCircle, type = "Main", amount = "$716.85")
         Spacer(modifier = modifier.weight(1f))
-        LowerPanelWithButtonAndDots(pagerState = null, buttonText = "Next")
+        LowerPanelWithButtonAndDots(
+            pagerState = null,
+            buttonText = "Next",
+            navController = navController,
+            destination = "category"
+        )
     }
 
 }
