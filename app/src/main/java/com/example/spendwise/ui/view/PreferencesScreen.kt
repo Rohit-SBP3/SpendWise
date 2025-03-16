@@ -29,11 +29,14 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.example.spendwise.model.Icon2TextModel
 
-@Preview(showBackground = true)
 @Composable
-fun PreferencesScreen(modifier: Modifier = Modifier){
+fun PreferencesScreen(
+    modifier: Modifier = Modifier,
+    navController: NavController
+){
 
     val list: List<Icon2TextModel> = listOf(
         Icon2TextModel(
@@ -69,7 +72,8 @@ fun PreferencesScreen(modifier: Modifier = Modifier){
         UpperBarWithIconAndText(
             leadIcon = Icons.Default.ArrowBack,
             trailIcon = null,
-            text = "Preferences"
+            text = "Preferences",
+            navController = navController
         )
 
         LazyColumn() {

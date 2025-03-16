@@ -22,7 +22,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
@@ -39,7 +38,8 @@ fun SetupImageScreen(modifier: Modifier = Modifier, navController: NavController
         UpperBarWithIconAndText(
             leadIcon = Icons.Default.ArrowBack,
             trailIcon = null,
-            text = "Add a photo"
+            text = "Add a photo",
+            navController = navController
         )
         HintMessage(modifier = modifier, text = "This is optional. Your photo will be stored only on your device, " +
                 "and will not be included in backups.")

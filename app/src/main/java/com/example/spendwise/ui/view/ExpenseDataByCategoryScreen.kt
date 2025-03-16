@@ -1,6 +1,7 @@
 package com.example.spendwise.ui.view
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -30,13 +31,14 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 
-@Preview(showBackground = true)
 @Composable
 fun ExpenseDataByCategoryScreen(
     //category: CategoryModel,
     category: String = "Eating out",
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    navController: NavController
 ) {
     Column(
         modifier = modifier.fillMaxSize()
@@ -45,7 +47,8 @@ fun ExpenseDataByCategoryScreen(
             leadIcon = Icons.Default.ArrowBack,
             trailIcon = Icons.Default.Create,
             text = category,
-            modifier
+            modifier =  modifier,
+            navController = navController
         )
         StatMonthSelection()
         CategoryExpenseDataSection(
@@ -188,7 +191,13 @@ fun CategoryExpenseDataSection(
 }
 
 @Composable
-fun UpperBarWithIconAndText(leadIcon: ImageVector, trailIcon: ImageVector?, text:String, modifier: Modifier = Modifier){
+fun UpperBarWithIconAndText(
+    leadIcon: ImageVector,
+    trailIcon: ImageVector?,
+    text:String,
+    modifier: Modifier = Modifier,
+    navController: NavController
+){
     Row(
        modifier = Modifier
            .fillMaxWidth()
@@ -199,7 +208,9 @@ fun UpperBarWithIconAndText(leadIcon: ImageVector, trailIcon: ImageVector?, text
         Icon(
             imageVector = leadIcon,
             contentDescription = "Back Button",
-            modifier.size(30.dp)
+            modifier.size(30.dp).clickable {
+                navController.popBackStack()
+            }
         )
         Spacer(modifier = modifier.width(20.dp))
         Text(

@@ -12,7 +12,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.AccountBox
 import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.ArrowBack
@@ -25,7 +24,6 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
@@ -33,14 +31,18 @@ import com.example.spendwise.ui.view.UpperBarWithIconAndText
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun SetupAccountScreen(modifier: Modifier = Modifier, navController: NavController){
+fun SetupAccountScreen(
+    modifier: Modifier = Modifier,
+    navController: NavController
+){
     Column(
         modifier = modifier.fillMaxSize()
     ){
         UpperBarWithIconAndText(
             leadIcon = Icons.Default.ArrowBack,
             trailIcon = null,
-            text = "Setup accounts"
+            text = "Setup accounts",
+            navController = navController
         )
         HintMessage(text = "Create new accounts, and/or add from the presents. You can change this later in the \"Accounts\" tab")
         Spacer(modifier = modifier.height(10.dp))

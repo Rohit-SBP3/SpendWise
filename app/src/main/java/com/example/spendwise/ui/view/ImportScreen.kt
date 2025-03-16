@@ -26,10 +26,13 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 
-@Preview(showBackground = true)
 @Composable
-fun ImportScreen(modifier: Modifier = Modifier){
+fun ImportScreen(
+    modifier: Modifier = Modifier,
+    navController: NavController
+){
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -38,7 +41,8 @@ fun ImportScreen(modifier: Modifier = Modifier){
         UpperBarWithIconAndText(
             leadIcon = Icons.Default.ArrowBack,
             trailIcon = null,
-            text = "Import"
+            text = "Import",
+            navController = navController
         )
         Spacer(modifier = modifier.height(15.dp))
         RestoreImport(modifier)

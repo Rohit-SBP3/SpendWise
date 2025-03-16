@@ -62,7 +62,7 @@ fun BottomNavBarApp() {
                 ProfileScreen()
             }
             composable("profileSection"){
-                AddUserInfoScreen()
+                AddUserInfoScreen(navController = navController)
             }
         }
     }

@@ -1,5 +1,6 @@
 package com.example.spendwise.ui.view
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -30,10 +31,13 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 
-@Preview(showBackground = true)
 @Composable
-fun AddUserInfoScreen(modifier: Modifier = Modifier){
+fun AddUserInfoScreen(
+    modifier: Modifier = Modifier,
+    navController: NavController
+){
 
     var username by remember { mutableStateOf("") }
 
@@ -41,7 +45,10 @@ fun AddUserInfoScreen(modifier: Modifier = Modifier){
         modifier.fillMaxSize().padding(10.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ){
-        UpperNavigation(modifier)
+        UpperNavigation(
+            modifier = modifier,
+            navController = navController
+        )
         Spacer(modifier = modifier.height(20.dp))
         Icon(
             imageVector = Icons.Default.AccountCircle,
@@ -64,7 +71,10 @@ fun AddUserInfoScreen(modifier: Modifier = Modifier){
 }
 
 @Composable
-fun UpperNavigation(modifier: Modifier = Modifier){
+fun UpperNavigation(
+    modifier: Modifier = Modifier,
+    navController: NavController
+){
     Row(
         modifier
             .fillMaxWidth()
@@ -74,7 +84,9 @@ fun UpperNavigation(modifier: Modifier = Modifier){
         Icon(
             imageVector = Icons.Default.ArrowBack,
             contentDescription = "Back Button",
-            modifier.size(30.dp)
+            modifier.size(30.dp).clickable {
+                navController.popBackStack()
+            }
         )
         Icon(
             imageVector = Icons.Default.Check,

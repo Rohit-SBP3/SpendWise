@@ -27,17 +27,21 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.navArgument
 import com.example.spendwise.R
 
-@Preview(showBackground = true)
 @Composable
-fun AddAccountScreen(modifier: Modifier = Modifier){
+fun AddAccountScreen(
+    modifier: Modifier = Modifier,
+    navController: NavController
+){
     Column(
         modifier = modifier
             .fillMaxSize()
             .padding(10.dp)
     ){
-        UpperNavigation(modifier)
+        UpperNavigation(modifier = modifier, navController = navController)
         Spacer(modifier = modifier.height(15.dp))
         AddAccountDetails(modifier)
         Balance(modifier)

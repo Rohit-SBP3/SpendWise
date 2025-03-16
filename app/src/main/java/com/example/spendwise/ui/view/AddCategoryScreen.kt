@@ -28,10 +28,13 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 
-@Preview(showBackground = true)
 @Composable
-fun AddCategoryScreen(modifier: Modifier = Modifier){
+fun AddCategoryScreen(
+    modifier: Modifier = Modifier,
+    navController: NavController
+){
 
     var categoryName by remember { mutableStateOf("") }
 
@@ -41,7 +44,10 @@ fun AddCategoryScreen(modifier: Modifier = Modifier){
             .padding(10.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ){
-        UpperNavigation(modifier)
+        UpperNavigation(
+            modifier = modifier,
+            navController = navController
+        )
         Spacer(modifier = modifier.height(20.dp))
         Icon(
             imageVector = Icons.Sharp.AddCircle,

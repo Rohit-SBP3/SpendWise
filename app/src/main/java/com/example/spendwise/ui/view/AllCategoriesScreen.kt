@@ -28,11 +28,14 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.spendwise.R
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.example.spendwise.model.Icon2TextModel
 
-@Preview(showBackground = true)
 @Composable
-fun AllCategoriesScreen(modifier: Modifier = Modifier){
+fun AllCategoriesScreen(
+    modifier: Modifier = Modifier,
+    navController: NavController
+){
 
     val categoryList: List<Icon2TextModel> = listOf(
         Icon2TextModel(
@@ -98,7 +101,9 @@ fun AllCategoriesScreen(modifier: Modifier = Modifier){
         UpperBarWithIconAndText(
             leadIcon = Icons.Default.ArrowBack,
             trailIcon = null,
-            text = "Categories")
+            text = "Categories",
+            navController = navController
+        )
         LazyColumn(modifier){
             item {
                 Row(

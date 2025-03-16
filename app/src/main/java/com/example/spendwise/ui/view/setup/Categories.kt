@@ -106,7 +106,8 @@ fun SetupCategoryScreen(modifier: Modifier = Modifier, navController: NavControl
         UpperBarWithIconAndText(
             leadIcon = Icons.Default.ArrowBack,
             trailIcon = null,
-            text = "Categories"
+            text = "Categories",
+            navController = navController
         )
         HintMessage(text = "Create categories, and/or add from the presents. You can change this later in \"profile > categories\" menu")
         LazyColumn(modifier.weight(1f)) {

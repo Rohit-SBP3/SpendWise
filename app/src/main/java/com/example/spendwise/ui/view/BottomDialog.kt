@@ -22,12 +22,15 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
-@Preview(showBackground = true)
 @Composable
-fun BottomSheet(text: String = "Select a currency") {
+fun BottomSheet(
+    text: String = "Select a currency",
+    navController: NavController
+) {
 
     val sheetState = rememberModalBottomSheetState()
     val scaffoldState = rememberBottomSheetScaffoldState(bottomSheetState = sheetState)
@@ -46,7 +49,7 @@ fun BottomSheet(text: String = "Select a currency") {
                         }
                     },
             ) {
-                PreferencesScreen()
+                PreferencesScreen(navController = navController)
             }
         },
         sheetContent = {

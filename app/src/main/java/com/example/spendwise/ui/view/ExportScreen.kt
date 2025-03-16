@@ -24,18 +24,22 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.example.spendwise.R
 
-@Preview(showBackground = true)
 @Composable
-fun ExportScreen(modifier: Modifier = Modifier){
+fun ExportScreen(
+    modifier: Modifier = Modifier,
+    navController: NavController
+){
     Column(
         modifier.fillMaxSize()
     ){
         UpperBarWithIconAndText(
             leadIcon = Icons.Default.ArrowBack,
             trailIcon = null,
-            text = "Export"
+            text = "Export",
+            navController = navController
         )
         ExportListItem(modifier = modifier)
     }
