@@ -62,6 +62,7 @@ fun SetupNameScreen(modifier: Modifier = Modifier, navController: NavController)
             modifier,pagerState = null,
             buttonText = "Next",
             navController = navController,
-            "photo")
+            "photo"
+        )
     }
 }

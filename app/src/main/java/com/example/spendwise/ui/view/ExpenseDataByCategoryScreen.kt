@@ -190,6 +190,7 @@ fun CategoryExpenseDataSection(
    }
 }
 
+
 @Composable
 fun UpperBarWithIconAndText(
     leadIcon: ImageVector,
@@ -208,14 +209,14 @@ fun UpperBarWithIconAndText(
         Icon(
             imageVector = leadIcon,
             contentDescription = "Back Button",
-            modifier.size(30.dp).clickable {
+            modifier.size(28.dp).clickable {
                 navController.popBackStack()
             }
         )
         Spacer(modifier = modifier.width(20.dp))
         Text(
             text = text,
-            fontSize = 26.sp,
+            fontSize = 24.sp,
             textAlign = TextAlign.Start,
             fontWeight = FontWeight.Medium
         )

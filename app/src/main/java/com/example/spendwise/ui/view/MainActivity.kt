@@ -8,14 +8,13 @@ import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.spendwise.ui.theme.SpendWiseTheme
+import com.example.spendwise.ui.view.setup.PhotoPickerBottomSheet
 import com.example.spendwise.ui.view.setup.SetupAccountScreen
 import com.example.spendwise.ui.view.setup.SetupCategoryScreen
 import com.example.spendwise.ui.view.setup.SetupCurrencyScreen
@@ -54,5 +53,6 @@ class MainActivity : ComponentActivity(){
         composable("account") { SetupAccountScreen(navController = navController) }
         composable("category") { (SetupCategoryScreen(navController = navController)) }
         composable("home") { BottomNavBarApp() }
+        composable("photoPicker") { PhotoPickerBottomSheet(navController = navController) }
     }
 }
