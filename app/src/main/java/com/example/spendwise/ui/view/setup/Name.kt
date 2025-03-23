@@ -31,6 +31,7 @@ import com.example.spendwise.ui.view.UpperBarWithIconAndText
 fun SetupNameScreen(modifier: Modifier = Modifier, navController: NavController){
 
     var username by remember { mutableStateOf("") }
+    var showError by remember { mutableStateOf(true) }
 
     Column(
         modifier.fillMaxSize()
@@ -46,23 +47,39 @@ fun SetupNameScreen(modifier: Modifier = Modifier, navController: NavController)
         ){
             TextField(
                 value = username,
-                onValueChange = { username = it },
-                label = { Text("Rohit Singh") },
+                onValueChange = {
+                    username = it
+                    showError = false
+                },
+                label = { Text("") },
                 placeholder = { Text(username) },
                 singleLine = true,
-                textStyle = TextStyle(fontWeight = FontWeight.Bold, fontSize = 20.sp),
+                textStyle = TextStyle(fontWeight = FontWeight.SemiBold, fontSize = 18.sp),
                 modifier = modifier.fillMaxWidth(),
                 colors = TextFieldDefaults.colors(
                     unfocusedContainerColor = Color(0xFFFFFFFF)
                 )
             )
         }
+        if (showError) {
+            Text(
+                text = "Please fill out the field",
+                color = Color.Red,
+                fontSize = 14.sp,
+                modifier = modifier.padding(start = 12.dp, top = 4.dp)
+            )
+        }
         Spacer(modifier = modifier.weight(1f))
         LowerPanelWithButtonAndDots(
-            modifier,pagerState = null,
+            modifier,
+            pagerState = null,
             buttonText = "Next",
             navController = navController,
-            "photo"
+            destination =
+                if (username.isBlank()) {
+                    showError = true
+                    null
+                } else "photo"
         )
     }
 }

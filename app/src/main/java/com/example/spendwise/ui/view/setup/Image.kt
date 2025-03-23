@@ -5,6 +5,7 @@ import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -16,6 +17,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.ArrowBack
@@ -33,18 +35,35 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import coil.compose.AsyncImage
 import com.example.spendwise.ui.view.UpperBarWithIconAndText
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun SetupImageScreen(modifier: Modifier = Modifier, navController: NavController){
+
+    var selectedImageUri by remember { mutableStateOf<String?>(null) }
+    val context = LocalContext.current
+
+    val launcher = rememberLauncherForActivityResult(
+        contract = ActivityResultContracts.PickVisualMedia(),
+        onResult = { uri ->
+            uri?.let {
+                selectedImageUri = it.toString()
+                Toast.makeText(context, "Photo Selected", Toast.LENGTH_SHORT).show()
+            }
+        }
+    )
+
 
     Column(
         modifier.fillMaxSize(),
@@ -57,22 +76,40 @@ fun SetupImageScreen(modifier: Modifier = Modifier, navController: NavController
             text = "Add a photo",
             navController = navController
         )
-        HintMessage(modifier = modifier, text = "This is optional. Your photo will be stored only on your device, " +
+        HintMessage(modifier = modifier, text = "This is optional. Your photo will be stored only on " +
+                "your device, " +
                 "and will not be included in backups.")
         Spacer(modifier = modifier.height(40.dp))
-        Icon(
-            imageVector = Icons.Default.AccountCircle,
-            contentDescription = "Add Image",
-            modifier
-                .size(120.dp)
-                .clickable {
-                    navController.navigate("photoPicker")
-                }
-        )
+
+        if (selectedImageUri == null) {
+            Icon(
+                imageVector = Icons.Default.AccountCircle,
+                contentDescription = "Add Image",
+                modifier
+                    .size(120.dp)
+                    .clickable {
+                        launcher.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
+                    }
+            )
+        } else {
+            AsyncImage(
+                model = selectedImageUri,
+                contentDescription = "Selected Image",
+                contentScale = ContentScale.Crop,
+                modifier = modifier
+                    .size(120.dp)
+                    .clip(CircleShape)
+                    .border(2.dp, Color.Black, CircleShape)
+                    .clickable {
+                        launcher.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
+                    }
+            )
+        }
+
         Spacer(modifier = modifier.weight(1f))
         LowerPanelWithButtonAndDots(
             pagerState = null,
-            buttonText = "Skip",
+            buttonText = if(selectedImageUri.isNullOrBlank()) "Skip" else "Next",
             navController = navController,
             destination = "currency"
         )
@@ -148,7 +185,7 @@ fun HintMessage(modifier: Modifier = Modifier, text: String){
         Text(
             text = text,
             fontWeight = FontWeight.Bold,
-            fontSize = 14.sp,
+            fontSize = 10.sp,
             style = TextStyle(color = Color.Gray)
         )
     }

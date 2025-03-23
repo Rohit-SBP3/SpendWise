@@ -57,6 +57,8 @@ dependencies {
     implementation("androidx.room:room-ktx:$room_version")
     ksp("androidx.room:room-compiler:$room_version")
 
+    implementation("io.coil-kt:coil-compose:2.4.0")
+
     implementation("com.github.PhilJay:MPAndroidChart:v3.1.0")
 
     implementation("com.google.accompanist:accompanist-pager:0.30.1")

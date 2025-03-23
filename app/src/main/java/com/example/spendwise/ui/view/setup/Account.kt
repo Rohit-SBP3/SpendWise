@@ -12,9 +12,11 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.AccountBox
 import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.filled.Face
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -48,6 +50,8 @@ fun SetupAccountScreen(
         Spacer(modifier = modifier.height(10.dp))
         AddAccountBox()
         AccountBox(icon = Icons.Default.AccountCircle, type = "Main", amount = "$716.85")
+        AccountBox(icon = Icons.Default.Face, type = "Savings", amount = "$10.2")
+        AccountBox(icon = Icons.Default.AccountBox, type = "Cash", amount = "$120.1")
         Spacer(modifier = modifier.weight(1f))
         LowerPanelWithButtonAndDots(
             pagerState = null,
