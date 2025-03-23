@@ -45,6 +45,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import coil.compose.AsyncImage
+import com.example.spendwise.ui.theme.Blue80
 import com.example.spendwise.ui.view.UpperBarWithIconAndText
 
 @OptIn(ExperimentalFoundationApi::class)
@@ -85,7 +86,8 @@ fun SetupImageScreen(modifier: Modifier = Modifier, navController: NavController
             Icon(
                 imageVector = Icons.Default.AccountCircle,
                 contentDescription = "Add Image",
-                modifier
+                tint = Blue80,
+                modifier = modifier
                     .size(120.dp)
                     .clickable {
                         launcher.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
@@ -179,13 +181,13 @@ fun HintMessage(modifier: Modifier = Modifier, text: String){
         Icon(
             imageVector = Icons.Default.Warning,
             contentDescription = "warning",
-            tint = Color.Gray
+            tint = Blue80
         )
         Spacer(modifier = modifier.width(8.dp))
         Text(
             text = text,
             fontWeight = FontWeight.Bold,
-            fontSize = 10.sp,
+            fontSize = 11.sp,
             style = TextStyle(color = Color.Gray)
         )
     }

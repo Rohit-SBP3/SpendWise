@@ -31,6 +31,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination
 import com.example.spendwise.R
+import com.example.spendwise.ui.theme.Blue80
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -88,7 +89,7 @@ fun PageContent(
         Icon(
             painter = icon,
             contentDescription = "App Logo",
-            tint = Color.Gray,
+            tint = Blue80,
             modifier = modifier.align(Alignment.CenterHorizontally)
         )
         Spacer(modifier = modifier.weight(1f))

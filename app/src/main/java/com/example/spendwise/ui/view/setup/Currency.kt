@@ -83,7 +83,7 @@ fun SetupCurrencyScreen(modifier: Modifier = Modifier, navController: NavControl
             pagerState = null,
             buttonText = "Next",
             navController = navController,
-            destination = "account"
+            destination = if(currency == "~~~" ) "account" else ""
         )
     }
 

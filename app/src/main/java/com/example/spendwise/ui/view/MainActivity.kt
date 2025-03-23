@@ -54,5 +54,6 @@ class MainActivity : ComponentActivity(){
         composable("category") { (SetupCategoryScreen(navController = navController)) }
         composable("home") { BottomNavBarApp() }
         composable("photoPicker") { PhotoPickerBottomSheet(navController = navController) }
+        composable("addAccountScreen") { AddAccountScreen(navController = navController) }
     }
 }

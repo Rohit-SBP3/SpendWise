@@ -2,6 +2,7 @@ package com.example.spendwise.ui.view.setup
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -18,6 +19,7 @@ import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Face
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -29,6 +31,9 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.example.spendwise.ui.theme.Blue80
+import com.example.spendwise.ui.theme.Pink80
+import com.example.spendwise.ui.theme.Purple80
 import com.example.spendwise.ui.view.UpperBarWithIconAndText
 
 @OptIn(ExperimentalFoundationApi::class)
@@ -48,7 +53,7 @@ fun SetupAccountScreen(
         )
         HintMessage(text = "Create new accounts, and/or add from the presents. You can change this later in the \"Accounts\" tab")
         Spacer(modifier = modifier.height(10.dp))
-        AddAccountBox()
+        AddAccountBox(navController = navController)
         AccountBox(icon = Icons.Default.AccountCircle, type = "Main", amount = "$716.85")
         AccountBox(icon = Icons.Default.Face, type = "Savings", amount = "$10.2")
         AccountBox(icon = Icons.Default.AccountBox, type = "Cash", amount = "$120.1")
@@ -64,13 +69,20 @@ fun SetupAccountScreen(
 }
 
 @Composable
-fun AddAccountBox(modifier: Modifier = Modifier){
+fun AddAccountBox(
+    modifier: Modifier = Modifier,
+    navController: NavController
+){
     Row(
         modifier
             .padding(10.dp)
             .fillMaxWidth()
-            .clip(RoundedCornerShape(30.dp))
-            .background(Color(0xFFF0C0F3)),
+            .clip(RoundedCornerShape(20.dp))
+            .background(Blue80)
+            .clickable {
+                navController.navigate("addAccountScreen")
+            }
+        ,
         verticalAlignment = Alignment.CenterVertically
     ) {
         Icon(
@@ -78,11 +90,11 @@ fun AddAccountBox(modifier: Modifier = Modifier){
             contentDescription = "Account Icon",
             modifier = modifier
                 .padding(15.dp)
-                .size(80.dp)
+                .size(60.dp)
         )
         Text(
             text = "Add new account",
-            fontSize = 22.sp,
+            fontSize = 18.sp,
             fontWeight = FontWeight.Medium
         )
     }
@@ -99,8 +111,8 @@ fun AccountBox(
         modifier
             .padding(10.dp)
             .fillMaxWidth()
-            .clip(RoundedCornerShape(30.dp))
-            .background(Color(0xFFF0C0F3)),
+            .clip(RoundedCornerShape(20.dp))
+            .background(Purple80),
         verticalAlignment = Alignment.CenterVertically
     ){
         Icon(
@@ -108,16 +120,16 @@ fun AccountBox(
             contentDescription = "Account Icon",
             modifier = modifier
                 .padding(15.dp)
-                .size(80.dp)
+                .size(60.dp)
         )
         Column{
             Text(
                 text = type,
-                fontSize = 22.sp,
+                fontSize = 18.sp,
                 fontWeight = FontWeight.Medium
             )
             Text(text = amount,
-            fontSize = 24.sp,
+            fontSize = 20.sp,
             fontWeight = FontWeight.Bold
             )
         }
