@@ -108,7 +108,13 @@ fun PageContent(
             )
             Spacer(modifier = Modifier.height(30.dp))
         }
-        LowerPanelWithButtonAndDots(modifier,pagerState, buttonText, navController, null)
+        LowerPanelWithButtonAndDots(
+            modifier = modifier,
+            pagerState = pagerState,
+            buttonText = buttonText,
+            navController = navController,
+            destination = null
+        )
     }
 }
 
