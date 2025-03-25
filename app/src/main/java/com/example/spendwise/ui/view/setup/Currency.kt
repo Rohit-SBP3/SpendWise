@@ -33,7 +33,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
@@ -45,7 +44,7 @@ import com.example.spendwise.ui.view.UpperBarWithIconAndText
 fun SetupCurrencyScreen(modifier: Modifier = Modifier, navController: NavController){
 
     var currency by remember { mutableStateOf("~~~") }
-    var showBottomSheet by remember { mutableStateOf(false) }
+    var showBottomSheet by remember { mutableStateOf(true) }
 
     Column(
         modifier = modifier.fillMaxSize(),
@@ -65,12 +64,15 @@ fun SetupCurrencyScreen(modifier: Modifier = Modifier, navController: NavControl
             onValueChange = { currency = it },
             placeholder = { Text(currency) },
             singleLine = true,
-            textStyle = TextStyle(fontWeight = FontWeight.Bold, fontSize = 25.sp, textAlign = TextAlign.Center),
+            textStyle = TextStyle(color = Color.Black, fontWeight = FontWeight.Bold, fontSize = 25.sp, textAlign = TextAlign.Center),
             colors = TextFieldDefaults.colors(
-                unfocusedContainerColor = Color(0xFFFFFFFF),
-                unfocusedIndicatorColor = Color.Transparent,
-                focusedIndicatorColor = Color.Transparent
-            )
+                unfocusedContainerColor = Color.Transparent, // ✅ Removes background color
+                focusedContainerColor = Color.Transparent,   // ✅ Ensures no background when focused
+                disabledContainerColor = Color.Transparent,  // ✅ No background when disabled
+                unfocusedIndicatorColor = Color.Transparent, // ✅ Removes underline when not focused
+                focusedIndicatorColor = Color.Transparent    // ✅ Removes underline when focused
+            ),
+            enabled = false
         )
         Spacer(modifier = modifier.height(20.dp))
         Button(onClick = {
@@ -83,7 +85,10 @@ fun SetupCurrencyScreen(modifier: Modifier = Modifier, navController: NavControl
             pagerState = null,
             buttonText = "Next",
             navController = navController,
-            destination = if(currency == "~~~" ) "account" else null
+            onClick = {
+                if (currency != "~~~")
+                    navController.navigate("account")
+            }
         )
     }
 

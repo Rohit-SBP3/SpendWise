@@ -11,6 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import com.example.spendwise.ui.theme.Blue80
 
 @Composable
 fun DotsIndicator(totalDots: Int, selectedIndex: Int) {
@@ -22,7 +23,7 @@ fun DotsIndicator(totalDots: Int, selectedIndex: Int) {
                 modifier = Modifier
                     .size(if (i == selectedIndex) 12.dp else 8.dp)
                     .clip(CircleShape)
-                    .background(if (i == selectedIndex) Color.Black else Color.Gray)
+                    .background(if (i == selectedIndex) Blue80 else Color.Gray)
             )
         }
     }

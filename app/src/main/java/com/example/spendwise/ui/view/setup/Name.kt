@@ -31,7 +31,7 @@ import com.example.spendwise.ui.view.UpperBarWithIconAndText
 fun SetupNameScreen(modifier: Modifier = Modifier, navController: NavController){
 
     var username by remember { mutableStateOf("") }
-    var showError by remember { mutableStateOf(true) }
+    var showError by remember { mutableStateOf(false) }
 
     Column(
         modifier.fillMaxSize()
@@ -75,11 +75,13 @@ fun SetupNameScreen(modifier: Modifier = Modifier, navController: NavController)
             pagerState = null,
             buttonText = "Next",
             navController = navController,
-            destination =
-                if (username.isBlank()) {
+            onClick = {
+                if (username.isEmpty()) {
                     showError = true
-                    null
-                } else "photo"
+                } else {
+                    navController.navigate("photo")
+                }
+            }
         )
     }
 }

@@ -113,7 +113,7 @@ fun SetupImageScreen(modifier: Modifier = Modifier, navController: NavController
             pagerState = null,
             buttonText = if(selectedImageUri.isNullOrBlank()) "Skip" else "Next",
             navController = navController,
-            destination = "currency"
+            onClick = { navController.navigate("currency")}
         )
     }
 }

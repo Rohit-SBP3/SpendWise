@@ -21,19 +21,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import androidx.navigation.NavDestination
 import com.example.spendwise.R
 import com.example.spendwise.ui.theme.Blue80
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalFoundationApi::class)
@@ -113,7 +108,7 @@ fun PageContent(
             pagerState = pagerState,
             buttonText = buttonText,
             navController = navController,
-            destination = null
+            onClick = {}
         )
     }
 }
@@ -124,8 +119,8 @@ fun LowerPanelWithButtonAndDots(
     modifier: Modifier = Modifier,
     pagerState: PagerState?,
     buttonText: String,
-    navController: NavController?,
-    destination: String?
+    navController: NavController,
+    onClick: (() -> Unit)
 ){
 
     val coroutineScope = rememberCoroutineScope()
@@ -144,7 +139,7 @@ fun LowerPanelWithButtonAndDots(
                             pagerState.animateScrollToPage(pagerState.currentPage + 1)
                         }
                     } else {
-                        navController?.navigate("name") {
+                        navController.navigate("name") {
                             popUpTo("category") { inclusive = true }
                         }
                     }
@@ -160,11 +155,7 @@ fun LowerPanelWithButtonAndDots(
         }else{
             Spacer(modifier = modifier.weight(1f))
             Button(
-                onClick = {
-                    if (destination != null) {
-                        navController?.navigate(destination)
-                    }
-                }) {
+                onClick = { onClick() }) {
                 Text(
                     text = buttonText
                 )
