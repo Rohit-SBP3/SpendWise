@@ -56,6 +56,7 @@ fun AddAccountScreen(
     }
 }
 
+@Preview(showBackground = true)
 @Composable
 fun AddAccountDetails(modifier: Modifier = Modifier){
 
@@ -68,18 +69,18 @@ fun AddAccountDetails(modifier: Modifier = Modifier){
         Row (
             modifier = modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceBetween,
-            verticalAlignment = Alignment.Top
+            verticalAlignment = Alignment.CenterVertically
         ){
             Icon(
                 painter = painterResource(id = R.drawable.wallet),
                 contentDescription = "Account Image",
-                modifier = modifier.size(80.dp),
+                modifier = modifier.size(70.dp),
                 tint = Blue80
             )
             Column(
-                modifier = modifier
+                modifier = modifier.weight(1f),
             ){
-                TextField(
+                TextField (
                     value = accountName,
                     onValueChange = {
                         accountName = it
@@ -88,7 +89,7 @@ fun AddAccountDetails(modifier: Modifier = Modifier){
                     label = { Text("Account name") },
                     placeholder = { Text(accountName) },
                     singleLine = true,
-                    textStyle = TextStyle(fontWeight = FontWeight.Bold, fontSize = 26.sp),
+                    textStyle = TextStyle(fontWeight = FontWeight.Bold, fontSize = 20.sp),
                     colors = TextFieldDefaults.colors(
                         unfocusedContainerColor = Color.Transparent, // Removes background color
                         focusedContainerColor = Color.Transparent,   // Ensures no background when focused
@@ -102,19 +103,18 @@ fun AddAccountDetails(modifier: Modifier = Modifier){
                         text = "Please fill out the field",
                         color = Color.Red,
                         fontSize = 8.sp,
-                        modifier = modifier.padding(start = 12.dp, top = 4.dp)
+                        modifier = modifier.padding(start = 16.dp)
                     )
                 }
             }
+
             if(accountName.isBlank()){
                 Icon(
                     imageVector = Icons.Default.Create,
                     contentDescription = "Edit name",
                     modifier
-                        .padding(10.dp)
                         .size(25.dp)
                         .clickable {
-
                         }
                 )
             }else {
@@ -122,7 +122,6 @@ fun AddAccountDetails(modifier: Modifier = Modifier){
                     imageVector = Icons.Default.Check,
                     contentDescription = "save name",
                     modifier
-                        .padding(10.dp)
                         .size(25.dp)
                         .clickable {
 
@@ -132,8 +131,8 @@ fun AddAccountDetails(modifier: Modifier = Modifier){
         }
         Text(
             text = "Change icon",
-            fontSize = 14.sp,
-            modifier = modifier.padding(top = 12.dp)
+            fontSize = 12.sp,
+            modifier = modifier.padding(top = 8.dp)
         )
     }
 }
