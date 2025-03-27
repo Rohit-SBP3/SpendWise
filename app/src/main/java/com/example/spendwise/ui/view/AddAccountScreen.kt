@@ -25,6 +25,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
@@ -63,6 +65,9 @@ fun AddAccountDetails(modifier: Modifier = Modifier){
     var accountName by remember { mutableStateOf("") }
     var showError by remember { mutableStateOf(false) }
 
+    var isEditing by remember { mutableStateOf(false) }
+    val focusRequester = remember { FocusRequester() }
+
     Column(
         modifier = modifier.padding(10.dp),
     ) {
@@ -84,7 +89,7 @@ fun AddAccountDetails(modifier: Modifier = Modifier){
                     value = accountName,
                     onValueChange = {
                         accountName = it
-                        showError = true
+                        showError = it.isBlank()
                     },
                     label = { Text("Account name") },
                     placeholder = { Text(accountName) },
@@ -96,7 +101,8 @@ fun AddAccountDetails(modifier: Modifier = Modifier){
                         disabledContainerColor = Color.Transparent,  // No background when disabled
                         unfocusedIndicatorColor = Color.Transparent, // Removes underline when not focused
                         focusedIndicatorColor = Color.Transparent    // Removes underline when focused
-                    )
+                    ),
+                    modifier = Modifier.focusRequester(focusRequester)
                 )
                 if (showError) {
                     Text(
@@ -115,6 +121,8 @@ fun AddAccountDetails(modifier: Modifier = Modifier){
                     modifier
                         .size(25.dp)
                         .clickable {
+                            isEditing = true
+                            focusRequester.requestFocus()
                         }
                 )
             }else {
