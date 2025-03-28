@@ -48,7 +48,8 @@ fun AddAccountScreen(
     Column(
         modifier = modifier
             .fillMaxSize()
-            .padding(10.dp)
+            .padding(10.dp),
+        horizontalAlignment = Alignment.CenterHorizontally
     ){
         UpperNavigation(modifier = modifier, navController = navController)
         Spacer(modifier = modifier.height(15.dp))
@@ -114,7 +115,7 @@ fun AddAccountDetails(modifier: Modifier = Modifier){
                 }
             }
 
-            if(accountName.isBlank()){
+            if(accountName.isBlank() || isEditing){
                 Icon(
                     imageVector = Icons.Default.Create,
                     contentDescription = "Edit name",
@@ -132,7 +133,8 @@ fun AddAccountDetails(modifier: Modifier = Modifier){
                     modifier
                         .size(25.dp)
                         .clickable {
-
+                            isEditing = false
+                            focusRequester.freeFocus()
                         }
                 )
             }
@@ -145,12 +147,12 @@ fun AddAccountDetails(modifier: Modifier = Modifier){
     }
 }
 
+
 @Composable
 fun Balance(modifier: Modifier = Modifier){
 
     Column(
         modifier = modifier
-            .fillMaxWidth()
             .padding(top = 20.dp)
             .clickable {
 
@@ -190,11 +192,12 @@ fun CurrencyAndExclude(modifier: Modifier = Modifier){
         ) {
             Text(
                 text = "Exclude from balance",
-                fontSize = 20.sp,
+                fontSize = 18.sp,
             )
             Checkbox(
                 checked = isChecked,
-                onCheckedChange = {isChecked = it}
+                onCheckedChange = {isChecked = it},
+                modifier = modifier.size(20.dp)
             )
         }
         Row (
@@ -204,12 +207,12 @@ fun CurrencyAndExclude(modifier: Modifier = Modifier){
         ){
             Text(
                 text = "Currency",
-                fontSize = 20.sp,
+                fontSize = 18.sp,
             )
             Spacer(modifier = modifier.height(80.dp))
             Text(
                 text = "USD",
-                fontSize = 18.sp,
+                fontSize = 16.sp,
                 modifier = modifier.padding(end = 10.dp)
             )
         }

@@ -57,7 +57,9 @@ fun SetupNameScreen(modifier: Modifier = Modifier, navController: NavController)
                 textStyle = TextStyle(fontWeight = FontWeight.SemiBold, fontSize = 18.sp),
                 modifier = modifier.fillMaxWidth(),
                 colors = TextFieldDefaults.colors(
-                    unfocusedContainerColor = Color(0xFFFFFFFF)
+                    unfocusedContainerColor = Color.Transparent, // Removes background color
+                    focusedContainerColor = Color.Transparent,   // Ensures no background when focused
+                    disabledContainerColor = Color.Transparent,  // No background when disabled
                 )
             )
         }
