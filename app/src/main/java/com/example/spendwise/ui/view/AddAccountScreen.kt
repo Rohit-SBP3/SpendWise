@@ -151,7 +151,10 @@ fun Balance(modifier: Modifier = Modifier){
     Column(
         modifier = modifier
             .fillMaxWidth()
-            .padding(top = 20.dp),
+            .padding(top = 20.dp)
+            .clickable {
+
+            },
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ){
