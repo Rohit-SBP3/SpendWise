@@ -61,7 +61,9 @@ fun SetupCurrencyScreen(modifier: Modifier = Modifier, navController: NavControl
         Spacer(modifier = modifier.height(20.dp))
         TextField(
             value = currency,
-            onValueChange = { currency = it },
+            onValueChange = {
+                currency = it
+            },
             placeholder = { Text(currency) },
             singleLine = true,
             textStyle = TextStyle(color = Color.Black, fontWeight = FontWeight.Bold, fontSize = 25.sp, textAlign = TextAlign.Center),
