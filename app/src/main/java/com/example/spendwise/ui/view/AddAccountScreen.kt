@@ -115,7 +115,7 @@ fun AddAccountDetails(modifier: Modifier = Modifier){
                 }
             }
 
-            if(accountName.isBlank() || isEditing){
+            if(accountName.isBlank()){
                 Icon(
                     imageVector = Icons.Default.Create,
                     contentDescription = "Edit name",

@@ -88,8 +88,7 @@ fun SetupCurrencyScreen(modifier: Modifier = Modifier, navController: NavControl
             buttonText = "Next",
             navController = navController,
             onClick = {
-                if (currency != "~~~")
-                    navController.navigate("account")
+                if (currency != "~~~") navController.navigate("account")
             }
         )
     }
