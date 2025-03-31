@@ -139,11 +139,7 @@ fun AddAccountDetails(modifier: Modifier = Modifier){
                 )
             }
         }
-        Text(
-            text = "Change icon",
-            fontSize = 12.sp,
-            modifier = modifier.padding(top = 8.dp)
-        )
+        Text(text = "Change icon", fontSize = 12.sp, modifier = modifier.padding(top = 8.dp))
     }
 }
 
