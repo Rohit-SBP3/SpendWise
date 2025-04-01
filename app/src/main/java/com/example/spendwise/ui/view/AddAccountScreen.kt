@@ -156,17 +156,9 @@ fun Balance(modifier: Modifier = Modifier){
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ){
-        Text(
-            text = "$0.00",
-            fontSize = 40.sp,
-            fontWeight = FontWeight.Bold
-        )
+        Text(text = "$0.00", fontSize = 40.sp, fontWeight = FontWeight.Bold)
         Spacer(modifier = modifier.height(8.dp))
-        Text(
-            text = "Update balance",
-            fontSize = 16.sp,
-            style = TextStyle(color = Blue80)
-        )
+        Text(text = "Update balance", fontSize = 16.sp, style = TextStyle(color = Blue80))
     }
 }
 
@@ -186,10 +178,7 @@ fun CurrencyAndExclude(modifier: Modifier = Modifier){
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            Text(
-                text = "Exclude from balance",
-                fontSize = 18.sp,
-            )
+            Text(text = "Exclude from balance", fontSize = 18.sp,)
             Checkbox(
                 checked = isChecked,
                 onCheckedChange = {isChecked = it},
@@ -201,16 +190,9 @@ fun CurrencyAndExclude(modifier: Modifier = Modifier){
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ){
-            Text(
-                text = "Currency",
-                fontSize = 18.sp,
-            )
+            Text(text = "Currency", fontSize = 18.sp,)
             Spacer(modifier = modifier.height(80.dp))
-            Text(
-                text = "USD",
-                fontSize = 16.sp,
-                modifier = modifier.padding(end = 10.dp)
-            )
+            Text(text = "USD", fontSize = 16.sp, modifier = modifier.padding(end = 10.dp))
         }
     }
 }
