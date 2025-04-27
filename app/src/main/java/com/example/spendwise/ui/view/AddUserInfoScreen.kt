@@ -91,7 +91,9 @@ fun UpperNavigation(
         Icon(
             imageVector = Icons.Default.Check,
             contentDescription = "Save",
-            modifier.size(30.dp)
+            modifier.size(30.dp).clickable {
+
+            }
         )
     }
 }

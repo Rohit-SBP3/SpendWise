@@ -74,7 +74,7 @@ fun SetupCurrencyScreen(modifier: Modifier = Modifier, navController: NavControl
                 unfocusedIndicatorColor = Color.Transparent, // ✅ Removes underline when not focused
                 focusedIndicatorColor = Color.Transparent    // ✅ Removes underline when focused
             ),
-            enabled = false
+            enabled = true
         )
         Spacer(modifier = modifier.height(20.dp))
         Button(onClick = {
