@@ -78,7 +78,7 @@ fun UpperNavigation(
     Row(
         modifier
             .fillMaxWidth()
-            .padding(10.dp),
+            .padding(start = 8.dp, end = 8.dp, bottom = 0.dp, top = 0.dp),
         horizontalArrangement = Arrangement.SpaceBetween
     ){
         Icon(

@@ -2,7 +2,6 @@ package com.example.spendwise.ui.view
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.grid.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Check
@@ -36,11 +35,11 @@ fun AddAccountScreen(
     Column(
         modifier = modifier
             .fillMaxSize()
-            .padding(10.dp),
+            .padding(start = 10.dp , end = 10.dp, top = 0.dp , bottom = 10.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ){
         UpperNavigation(modifier = modifier, navController = navController)
-        Spacer(modifier = modifier.height(15.dp))
+        Spacer(modifier = modifier.height(8.dp))
         AddAccountDetails(modifier)
         Balance(modifier)
         CurrencyAndExclude(modifier)
@@ -78,7 +77,9 @@ fun AddAccountDetails(modifier: Modifier = Modifier) {
             )
 
             Column(
-                modifier = modifier.padding(20.dp).weight(1f),
+                modifier = modifier
+                    .padding(20.dp)
+                    .weight(1f),
             ) {
                 if (isEditing) {
                     TextField(
@@ -101,7 +102,8 @@ fun AddAccountDetails(modifier: Modifier = Modifier) {
                             .focusRequester(focusRequester)
                             .onFocusChanged { focusState ->
                                 // Optional, if you still want some UI change on focus
-                            }.padding(0.dp)
+                            }
+                            .padding(0.dp)
                     )
                 } else {
                     Text(
@@ -235,12 +237,13 @@ fun AddAccountDetails(modifier: Modifier = Modifier) {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun Balance(modifier: Modifier = Modifier){
+fun Balance(modifier: Modifier = Modifier) {
 
     val bottomSheetState = rememberModalBottomSheetState(
         skipPartiallyExpanded = true
     )
     var showSheet by remember { mutableStateOf(false) }
+    var inputText by remember { mutableStateOf("") }
 
     if (showSheet) {
         ModalBottomSheet(
@@ -249,13 +252,44 @@ fun Balance(modifier: Modifier = Modifier){
             shape = RoundedCornerShape(topStart = 16.dp, topEnd = 16.dp),
             containerColor = MaterialTheme.colorScheme.surface
         ) {
-            Numpad(
-                crossAxisCount = 3,
-                children = buildNumpadChildren {
-                    println("Clicked: $it")
-                }
-            )
-            Spacer(modifier = Modifier.height(24.dp))
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp)
+            ) {
+
+                TextField(
+                    value = inputText,
+                    onValueChange = {},
+                    readOnly = true,
+                    placeholder = { Text(text = "$0") },
+                    modifier = Modifier.fillMaxWidth()
+                )
+
+                Spacer(modifier = Modifier.height(16.dp))
+
+                Numpad(
+                    crossAxisCount = 3,
+                    children = buildNumpadChildren { key ->
+                        when (key) {
+                            "⌫" -> {
+                                if (inputText.isNotEmpty()) {
+                                    inputText = inputText.dropLast(1)
+                                }
+                            }
+                            "✅" -> {
+                                // Confirm balance input (You can add save logic here)
+                                showSheet = false
+                            }
+                            else -> {
+                                inputText += key
+                            }
+                        }
+                    }
+                )
+
+                Spacer(modifier = Modifier.height(24.dp))
+            }
         }
     }
 
@@ -267,13 +301,14 @@ fun Balance(modifier: Modifier = Modifier){
             },
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
-    ){
-        Text(text = "$0.00", fontSize = 40.sp, fontWeight = FontWeight.Bold)
+    ) {
+        Text(text = if(inputText == "") "$0.00" else "$$inputText" , fontSize = 40.sp, fontWeight = FontWeight.Bold)
         Spacer(modifier = modifier.height(8.dp))
         Text(text = "Update balance", fontSize = 16.sp, style = TextStyle(color = Blue80))
     }
 }
 
+@Preview(showBackground = true)
 @Composable
 fun CurrencyAndExclude(modifier: Modifier = Modifier){
 
@@ -281,14 +316,14 @@ fun CurrencyAndExclude(modifier: Modifier = Modifier){
 
     Column(
         modifier
-            .padding(start = 10.dp, top = 50.dp)
+            .padding(start = 10.dp, top = 50.dp, end = 10.dp)
             .fillMaxWidth(),
         verticalArrangement = Arrangement.SpaceBetween,
     ) {
         Row(
             modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceBetween,
-            verticalAlignment = Alignment.CenterVertically
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.SpaceBetween
         ) {
             Text(text = "Exclude from balance", fontSize = 18.sp,)
             Checkbox(
@@ -304,7 +339,7 @@ fun CurrencyAndExclude(modifier: Modifier = Modifier){
         ){
             Text(text = "Currency", fontSize = 18.sp,)
             Spacer(modifier = modifier.height(80.dp))
-            Text(text = "USD", fontSize = 16.sp, modifier = modifier.padding(end = 10.dp))
+            Text(text = "USD", fontSize = 16.sp)
         }
     }
 }
