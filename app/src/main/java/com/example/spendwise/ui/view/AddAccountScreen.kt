@@ -4,16 +4,22 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.AccountBox
+import androidx.compose.material.icons.filled.AddCircle
 import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.filled.Create
+import androidx.compose.material.icons.filled.LocationOn
+import androidx.compose.material.icons.filled.MailOutline
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -24,6 +30,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.spendwise.R
 import com.example.spendwise.ui.theme.Blue80
+import com.example.spendwise.ui.view.setup.CurrencyPicker
 import com.example.spendwise.ui.view.setup.Numpad
 import com.example.spendwise.ui.view.setup.buildNumpadChildren
 
@@ -35,7 +42,7 @@ fun AddAccountScreen(
     Column(
         modifier = modifier
             .fillMaxSize()
-            .padding(start = 10.dp , end = 10.dp, top = 0.dp , bottom = 10.dp),
+            .padding(10.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ){
         UpperNavigation(modifier = modifier, navController = navController)
@@ -46,7 +53,7 @@ fun AddAccountScreen(
     }
 }
 
-@Preview(showBackground = true)
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AddAccountDetails(modifier: Modifier = Modifier) {
 
@@ -54,6 +61,9 @@ fun AddAccountDetails(modifier: Modifier = Modifier) {
     var showError by remember { mutableStateOf(false) }
     var isEditing by remember { mutableStateOf(false) }
     val focusRequester = remember { FocusRequester() }
+
+    val bottomSheetState = rememberModalBottomSheetState(skipPartiallyExpanded = false)
+    var showSheet by remember { mutableStateOf(false) }
 
     LaunchedEffect(isEditing) {
         if (isEditing) {
@@ -72,7 +82,9 @@ fun AddAccountDetails(modifier: Modifier = Modifier) {
             Icon(
                 painter = painterResource(id = R.drawable.wallet),
                 contentDescription = "Account Image",
-                modifier = modifier.size(70.dp),
+                modifier = modifier.size(70.dp).clickable {
+                    showSheet = true
+                },
                 tint = Blue80
             )
 
@@ -90,7 +102,7 @@ fun AddAccountDetails(modifier: Modifier = Modifier) {
                         },
                         placeholder = { Text("Account name") },
                         singleLine = true,
-                        textStyle = TextStyle(fontWeight = FontWeight.Bold, fontSize = 20.sp, textAlign = TextAlign.Start),
+                        textStyle = TextStyle(fontWeight = FontWeight.Bold, fontSize = 20.sp, textAlign = TextAlign.Center),
                         colors = TextFieldDefaults.colors(
                             unfocusedContainerColor = Color.Transparent,
                             focusedContainerColor = Color.Transparent,
@@ -144,12 +156,29 @@ fun AddAccountDetails(modifier: Modifier = Modifier) {
                         }
                 )
             }
+
+            if(showSheet){
+                ModalBottomSheet(
+                    onDismissRequest = {showSheet = false},
+                    sheetState = bottomSheetState,
+                    shape = RoundedCornerShape(topStart = 15.dp, topEnd = 15.dp),
+                ) {
+                    ChangeIconFromModalSheet(modifier)
+                }
+            }
         }
-        Text(text = "Change icon", fontSize = 12.sp, modifier = modifier.padding(top = 8.dp))
+        Text(
+            text = "Change icon",
+            fontSize = 12.sp,
+            modifier = modifier.padding(top = 8.dp).clickable {
+                showSheet = true
+            }
+        )
     }
 }
 
-/*fun AddAccountDetails(modifier: Modifier = Modifier){
+@Composable
+fun AddAccountDetailsTT(modifier: Modifier = Modifier){
 
     var accountName by remember { mutableStateOf("") }
     var showError by remember { mutableStateOf(false) }
@@ -180,6 +209,7 @@ fun AddAccountDetails(modifier: Modifier = Modifier) {
                     onValueChange = {
                         accountName = it
                         showError = it.isBlank()
+                        showIcon = it.isNotBlank()
                     },
                     placeholder = { Text("Account name") },
                     singleLine = true,
@@ -213,6 +243,7 @@ fun AddAccountDetails(modifier: Modifier = Modifier) {
                         .size(25.dp)
                         .clickable {
                             isEditing = true
+                            showIcon != showIcon
                             focusRequester.requestFocus()
                         }
                 )
@@ -225,14 +256,14 @@ fun AddAccountDetails(modifier: Modifier = Modifier) {
                         .clickable {
                             isEditing = false
                             focusRequester.freeFocus()
-                            showIcon = false
+                            showIcon = !showIcon
                         }
                 )
             }
         }
         Text(text = "Change icon", fontSize = 12.sp, modifier = modifier.padding(top = 8.dp))
     }
-}*/
+}
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -302,26 +333,28 @@ fun Balance(modifier: Modifier = Modifier) {
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
-        Text(text = if(inputText == "") "$0.00" else "$$inputText" , fontSize = 40.sp, fontWeight = FontWeight.Bold)
+        Text(text = if(inputText == "") "$0.00" else "$$inputText.00" , fontSize = 40.sp, fontWeight = FontWeight.Bold)
         Spacer(modifier = modifier.height(8.dp))
         Text(text = "Update balance", fontSize = 16.sp, style = TextStyle(color = Blue80))
     }
 }
 
-@Preview(showBackground = true)
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CurrencyAndExclude(modifier: Modifier = Modifier){
 
     var isChecked by remember { mutableStateOf(false) }
+    var showBottomSheet by remember { mutableStateOf(false) }
+    var currency by remember { mutableStateOf("USD") }
 
     Column(
-        modifier
-            .padding(start = 10.dp, top = 50.dp, end = 10.dp)
-            .fillMaxWidth(),
+        modifier.padding(start = 10.dp, top = 50.dp, end = 10.dp).fillMaxWidth(),
         verticalArrangement = Arrangement.SpaceBetween,
     ) {
         Row(
-            modifier.fillMaxWidth(),
+            modifier.fillMaxWidth().clickable {
+                isChecked = !isChecked
+            },
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
@@ -332,14 +365,78 @@ fun CurrencyAndExclude(modifier: Modifier = Modifier){
                 modifier = modifier.size(20.dp)
             )
         }
+        Spacer(modifier = Modifier.height(30.dp))
         Row (
-            modifier.fillMaxWidth(),
+            modifier.fillMaxWidth().clickable {
+                showBottomSheet = !showBottomSheet
+            },
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ){
             Text(text = "Currency", fontSize = 18.sp,)
-            Spacer(modifier = modifier.height(80.dp))
-            Text(text = "USD", fontSize = 16.sp)
+            Text(text = currency, fontSize = 16.sp)
         }
+
+        if (showBottomSheet) {
+            ModalBottomSheet(
+                onDismissRequest = { showBottomSheet = false },
+                sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true)
+            ) {
+                CurrencyPicker(
+                    onCurrencySelected = { selectedCurrency ->
+                        currency = selectedCurrency
+                        showBottomSheet = false
+                    }
+                )
+            }
+        }
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun ChangeIconFromModalSheet(modifier: Modifier = Modifier){
+
+    Column(
+        modifier = modifier.fillMaxWidth().padding(start = 16.dp, end = 16.dp, bottom = 16.dp),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Text(
+            text = "Change Icon",
+            fontSize = 25.sp,
+            fontWeight = FontWeight.Bold
+        )
+        Spacer(modifier.height(10.dp))
+        Column {
+            ChangeIconBox(iconName = "Icon", icon = Icons.Default.AddCircle)
+            ChangeIconBox(iconName = "Character", icon = Icons.Default.MailOutline)
+            ChangeIconBox(iconName = "Image", icon = Icons.Default.AccountBox)
+        }
+    }
+
+}
+
+
+@Composable
+fun ChangeIconBox(
+    modifier: Modifier = Modifier,
+    iconName: String,
+    icon: ImageVector
+){
+    Row(
+        modifier = modifier.fillMaxWidth().padding(14.dp)
+    ){
+        Icon(
+            imageVector = icon,
+            contentDescription = "Icon Type",
+            modifier = modifier.size(32.dp),
+            tint = Blue80
+        )
+        Spacer(modifier = modifier.width(18.dp))
+        Text(
+            text = iconName,
+            fontSize = 18.sp,
+            fontWeight = FontWeight.W400
+        )
     }
 }
