@@ -127,11 +127,7 @@ fun AddAccountDetails(modifier: Modifier = Modifier) {
                 }
 
                 if (showError && isEditing) {
-                    Text(
-                        text = "Please fill out the field",
-                        color = Color.Red,
-                        fontSize = 8.sp,
-                    )
+                    Text(text = "Please fill out the field", color = Color.Red, fontSize = 8.sp,)
                 }
             }
 
@@ -167,12 +163,7 @@ fun AddAccountDetails(modifier: Modifier = Modifier) {
                 }
             }
         }
-        Text(
-            text = "Change icon",
-            fontSize = 12.sp,
-            modifier = modifier.padding(top = 8.dp).clickable {
-                showSheet = true
-            }
+        Text(text = "Change icon", fontSize = 12.sp, modifier = modifier.padding(top = 8.dp).clickable { showSheet = true }
         )
     }
 }
