@@ -113,7 +113,7 @@ fun AddAccountDetails(modifier: Modifier = Modifier) {
                         modifier = Modifier
                             .focusRequester(focusRequester)
                             .onFocusChanged { focusState ->
-                                // Optional, if you still want some UI change on focus
+                                // Optional, if you still want some UI change on focu
                             }
                             .padding(0.dp)
                     )
