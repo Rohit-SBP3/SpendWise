@@ -301,6 +301,7 @@ fun Balance(modifier: Modifier = Modifier) {
                             }
                             "✅" -> {
                                 // Confirm balance input (You can add save logic here)
+
                                 showSheet = false
                             }
                             else -> {
