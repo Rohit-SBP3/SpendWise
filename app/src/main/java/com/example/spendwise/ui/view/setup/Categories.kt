@@ -29,6 +29,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.spendwise.R
 import com.example.spendwise.model.Icon2TextModel
+import com.example.spendwise.ui.theme.Blue80
 import com.example.spendwise.ui.view.CategoryListItem
 import com.example.spendwise.ui.view.UpperBarWithIconAndText
 
@@ -115,19 +116,19 @@ fun SetupCategoryScreen(modifier: Modifier = Modifier, navController: NavControl
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(15.dp)
-                        .clip(RoundedCornerShape(20.dp))
-                        .background(Color(0xFFF0C0F3)),
+                        .clip(RoundedCornerShape(15.dp))
+                        .background(Blue80),
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     Icon(
                         imageVector = Icons.Default.Add,
                         contentDescription = "Add Category",
-                        modifier = Modifier.size(50.dp)
+                        modifier = Modifier.size(40.dp)
                     )
                     Spacer(modifier = Modifier.width(20.dp)) // Optional spacing between icon and text
                     Text(
                         text = "Add a category",
-                        fontSize = 20.sp
+                        fontSize = 16.sp
                     )
                 }
             }

@@ -30,6 +30,7 @@ import com.example.spendwise.R
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.spendwise.model.Icon2TextModel
+import com.example.spendwise.ui.theme.Blue80
 
 @Composable
 fun AllCategoriesScreen(
@@ -155,14 +156,14 @@ fun CategoryListItem(
     Row(
         modifier = modifier
             .fillMaxWidth()
-            .background(Color(0xFFF0C0F3))
+            .background(Blue80)
             .padding(5.dp),
         verticalAlignment = Alignment.CenterVertically
     ){
         Icon(
             painter = icon,
             contentDescription = text,
-            modifier.size(50.dp)
+            modifier.size(40.dp)
         )
         Spacer(modifier = modifier.width(20.dp))
         Column(
@@ -170,7 +171,7 @@ fun CategoryListItem(
         ){
             Text(
                 text = text,
-                fontSize = 20.sp
+                fontSize = 18.sp
             )
             if(price != null) {
                 Text(

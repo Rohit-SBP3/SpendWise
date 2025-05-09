@@ -91,7 +91,7 @@ fun UpperNavigation(
             imageVector = Icons.Default.Check,
             contentDescription = "Save",
             modifier.size(30.dp).clickable {
-
+                navController.popBackStack()
             }
         )
     }
